@@ -1,0 +1,6 @@
+*.o
+*.d
+obj
+proj3000
+proj3000.san
+proj3000.dev

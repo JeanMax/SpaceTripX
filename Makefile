@@ -6,7 +6,7 @@
 #    By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/29 13:16:03 by mcanal            #+#    #+#              #
-#    Updated: 2020/01/13 13:48:34 by mc               ###   ########.fr        #
+#    Updated: 2020/01/13 14:51:17 by mc               ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -36,7 +36,7 @@ LDLIBS = -lncurses
 LDFLAGS =
 
 # compilation flags
-CPPFLAGS =
+CPPFLAGS = -D VERBOSE
 
 
 ##
@@ -46,7 +46,7 @@ CPPFLAGS =
 # compilation/linking flags for the differents public rules
 WFLAGS = -Wextra -Wall  # warnings
 RCFLAGS = $(WFLAGS) -Werror -O2  # release
-DCFLAGS = $(WFLAGS) -g -DDEBUG  # debug
+DCFLAGS = $(WFLAGS) -g -D NDEBUG  # debug
 SCFLAGS = $(DCFLAGS) -fsanitize=address,undefined -ferror-limit=5  # sanitize
 WWFLAGS = $(WFLAGS) -Wpedantic -Wold-style-cast -Woverloaded-virtual \
                     -Wfloat-equal -Wwrite-strings -Wcast-align -Wconversion \
@@ -123,8 +123,7 @@ clean:
 
 # remove the generated binary, and all .o and .d
 fclean: clean
-	test -d $(OBJ_DIR) \
-&& find $(OBJ_DIR) -type d | sort -r | xargs $(RMDIR) || true
+	test -d $(OBJ_DIR) && find $(OBJ_DIR) -type d | sort -r | xargs $(RMDIR) || true
 	$(RM) $(PROJECT) $(PROJECT).san $(PROJECT).dev
 
 # some people like it real clean

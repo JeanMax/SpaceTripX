@@ -6,13 +6,13 @@
 //   By: mc <mc.maxcanal@gmail.com>                 +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2020/01/13 13:41:54 by mc                #+#    #+#             //
-//   Updated: 2020/01/14 11:28:07 by mc               ###   ########.fr       //
+//   Updated: 2020/01/14 15:42:47 by mc               ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include "proj3000.hpp"
 #include "Input.class.hpp"
-#include <unistd.h>            // DEBUG
+#include "Frame.class.hpp"
 
 static bool init()
 {
@@ -42,12 +42,14 @@ int         main(int ac, char **av)
     }
 
     Input input = Input();
+    Frame frame = Frame();
 
     // DEBUG
     while (input.get_last_key() != EXIT_KEY) {
+        frame.next();
         input.read_key();
+        clear();
         MSG("key: " << input.get_last_key());
-        usleep(500 * 1000);
     }
     // DEBUG
 

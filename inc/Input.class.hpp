@@ -6,7 +6,7 @@
 //   By: mc <mc.maxcanal@gmail.com>                 +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2020/01/14 10:37:49 by mc                #+#    #+#             //
-//   Updated: 2020/01/14 11:23:38 by mc               ###   ########.fr       //
+//   Updated: 2020/01/14 15:42:11 by mc               ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -24,7 +24,6 @@
 
 # define READ_KEY_TIMEOUT_MS 50
 
-# include <cstdlib>
 # include <curses.h>
 
 # include "log.hpp"
@@ -46,5 +45,6 @@ class Input
     protected:
         char _last_key = NOT_A_KEY;
 };
+
 
 #endif //INPUT_CLASS_HPP

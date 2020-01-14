@@ -6,7 +6,7 @@
 #    By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/29 13:16:03 by mcanal            #+#    #+#              #
-#    Updated: 2020/01/14 11:01:21 by mc               ###   ########.fr        #
+#    Updated: 2020/01/14 13:40:14 by mc               ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,7 +18,7 @@
 PROJECT = proj3000
 
 # file-names of the sources
-SRC_NAME = main.cpp  Input.class.cpp
+SRC_NAME = main.cpp  Input.class.cpp  Frame.class.cpp
 
 # folder-names of the sources
 SRC_PATH = src

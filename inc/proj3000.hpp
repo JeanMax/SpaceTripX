@@ -6,14 +6,14 @@
 //   By: mc <mc.maxcanal@gmail.com>                 +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2020/01/13 13:42:47 by mc                #+#    #+#             //
-//   Updated: 2020/01/13 14:48:36 by mc               ###   ########.fr       //
+//   Updated: 2020/01/14 13:38:54 by mc               ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #ifndef PROJ3000_HPP
 # define PROJ3000_HPP
 
-# include <cstdlib>
+# include <cstdlib>  // EXIT_SUCCESS / EXIT_FAILURE
 # include "log.hpp"
 
 

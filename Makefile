@@ -18,7 +18,7 @@
 PROJECT = proj3000
 
 # file-names of the sources
-SRC_NAME = main.cpp  Input.class.cpp  Frame.class.cpp
+SRC_NAME = main.cpp  Input.class.cpp  Frame.class.cpp  Point.class.cpp
 
 # folder-names of the sources
 SRC_PATH = src
@@ -30,7 +30,7 @@ INC_PATH = inc
 TEST_DIR = test
 
 # extra libraries needed for linking
-LDLIBS = -lncurses
+LDLIBS = -lncurses -lm
 
 # linking flags
 LDFLAGS =

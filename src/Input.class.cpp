@@ -19,15 +19,6 @@
 Input::Input()
 {
 	DEBUG("Input constructed (default).");
-
-    timeout(READ_KEY_TIMEOUT_MS);
-	noecho();
-	curs_set(false);
-	setlocale(LC_ALL, "");  // handle special symbol as 卐
-	keypad(stdscr, true);  // add special chars as F{1-12}
-#ifndef NDEBUG
-	raw();
-#endif
 }
 
 Input::Input(Input const &copy)

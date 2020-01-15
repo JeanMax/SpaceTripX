@@ -16,7 +16,20 @@
 
 static bool init()
 {
+	setlocale(LC_ALL, "");  // handle special symbol as 卐
     initscr(); //init ncurses
+    cbreak();
+// #ifndef NDEBUG
+// 	raw();
+// #endif
+	noecho();
+
+    nonl();
+    intrflush(stdscr, false);
+    keypad(stdscr, true);  // add special chars as F{1-12}
+
+    timeout(READ_KEY_TIMEOUT_MS);
+	curs_set(false);
 
     return true;
 }

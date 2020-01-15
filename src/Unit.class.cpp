@@ -64,10 +64,12 @@ Unit           &Unit::operator=(Unit const &copy)
 /*
 ** public
 */
-// double          Unit::distance(Unit const &rhs)
-// {
-//     return sqrt(pow(rhs.x - this->x, 2) - pow(rhs.y - this->y, 2));
-// }
+Unit            &Unit::move(enum direction direction)
+{
+    *this += g_base_vectors[direction];
+
+    return *this;
+}
 
 
 /*

@@ -25,6 +25,12 @@ class Point
         ~Point(void);
         Point &operator=(Point const &copy);
 
+        bool  operator==(Point const &rhs);
+        Point operator+(Point const &rhs);
+        Point operator-(Point const &rhs);
+        void  operator+=(Point const &rhs);
+        void  operator-=(Point const &rhs);
+
         Point &set_coord(int x, int y);
         double distance(Point const &rhs);
 

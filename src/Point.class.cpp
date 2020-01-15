@@ -55,6 +55,31 @@ Point           &Point::operator=(Point const &copy)
 	return *this;
 }
 
+bool            Point::operator==(Point const &rhs)
+{
+	return this->x == rhs.x && this->y == rhs.y;
+}
+
+Point           Point::operator+(Point const &rhs)
+{
+	return Point(this->x + rhs.x, this->y + rhs.y);
+}
+
+Point           Point::operator-(Point const &rhs)
+{
+	return Point(this->x - rhs.x, this->y - rhs.y);
+}
+
+void            Point::operator+=(Point const &rhs)
+{
+    this->set_coord(this->x + rhs.x, this->y + rhs.y);
+}
+
+void            Point::operator-=(Point const &rhs)
+{
+	this->set_coord(this->x - rhs.x, this->y - rhs.y);
+}
+
 
 /*
 ** public

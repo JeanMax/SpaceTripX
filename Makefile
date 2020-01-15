@@ -1,12 +1,12 @@
 #******************************************************************************#
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/11/29 13:16:03 by mcanal            #+#    #+#              #
-#    Updated: 2020/01/14 13:40:14 by mc               ###   ########.fr        #
+#                                                               _.._..,_,_     #
+#    Makefile                                                  (          )    #
+#                                                               ]~,'-.-~~[     #
+#    By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([     #
+#                                                             | ]:)   '  [     #
+#    As long as you retain this notice you can do whatever    '=]): .)  ([     #
+#    you want with this stuff. If we meet some day, and you     |:: '    |     #
+#    think this is worth it, you can buy me a beer in return.    ~~----~~      #
 #                                                                              #
 #******************************************************************************#
 

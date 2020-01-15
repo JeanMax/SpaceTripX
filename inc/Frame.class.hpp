@@ -1,12 +1,12 @@
 // ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   Frame.class.hpp                                    :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: mc <mc.maxcanal@gmail.com>                 +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2020/01/14 13:38:10 by mc                #+#    #+#             //
-//   Updated: 2020/01/14 15:23:44 by mc               ###   ########.fr       //
+//                                                              _.._..,_,_    //
+//   Frame.class.hpp                                           (          )   //
+//                                                              ]~,'-.-~~[    //
+//   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
+//                                                            | ]:)   '  [    //
+//   As long as you retain this notice you can do whatever    '=]): .)  ([    //
+//   you want with this stuff. If we meet some day, and you     |:: '    |    //
+//   think this is worth it, you can buy me a beer in return.    ~~----~~     //
 //                                                                            //
 // ************************************************************************** //
 

@@ -16,6 +16,9 @@
 # include "log.hpp"
 # include "Point.class.hpp"
 
+# define AT(array, point) (array[point.y][point.x])
+
+# define EMPTY ' '
 
 enum direction
 {
@@ -37,22 +40,23 @@ Point g_base_vectors[MAX_DIRECTIONS] = {
 class Unit: public Point
 {
     public:
-        Unit(int x = 0, int y = 0, int w = 0, int h = 0);
+        Unit(int x = 0, int y = 0);
         Unit(Unit const &copy);
         ~Unit(void);
         Unit &operator=(Unit const &copy);
 
         Unit &move(enum direction direction);
+        bool include(Point const &p) const;
+        bool touch(Unit const &u) const;
 
         Unit &set_coord(int x, int y);
-        Unit &set_size(int w, int h);
-        Unit &set_dim(int x, int y, int w, int h);
 
         // double distance(Point const &rhs);  // in Point
         // TODO: this is a bit tricky with w/h
 
         // int x, y;  // in Point
-        int w, h;
+        static const int w = 1, h = 1;
+        static constexpr const char sprite[h][w + 1] = {"O"};
 };
 
 

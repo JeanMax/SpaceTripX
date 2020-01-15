@@ -55,17 +55,17 @@ Point           &Point::operator=(Point const &copy)
 	return *this;
 }
 
-bool            Point::operator==(Point const &rhs)
+bool            Point::operator==(Point const &rhs) const
 {
 	return this->x == rhs.x && this->y == rhs.y;
 }
 
-Point           Point::operator+(Point const &rhs)
+Point           Point::operator+(Point const &rhs) const
 {
 	return Point(this->x + rhs.x, this->y + rhs.y);
 }
 
-Point           Point::operator-(Point const &rhs)
+Point           Point::operator-(Point const &rhs) const
 {
 	return Point(this->x - rhs.x, this->y - rhs.y);
 }
@@ -84,7 +84,7 @@ void            Point::operator-=(Point const &rhs)
 /*
 ** public
 */
-double          Point::distance(Point const &rhs)
+double          Point::distance(Point const &rhs) const
 {
     return sqrt(pow(rhs.x - this->x, 2) - pow(rhs.y - this->y, 2));
 }

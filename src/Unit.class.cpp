@@ -16,13 +16,9 @@
 /*
 ** constructor
 */
-Unit::Unit(int new_x, int new_y, int new_w, int new_h):
-    Point(new_x, new_y)
+Unit::Unit(int new_x, int new_y): Point(new_x, new_y)
 {
 	DEBUG("Unit constructed (default).");
-
-    this->w = new_w;
-    this->h = new_h;
 }
 
 Unit::Unit(Unit const &copy)
@@ -31,8 +27,6 @@ Unit::Unit(Unit const &copy)
 
     this->x = copy.x;
     this->y = copy.y;
-    this->w = copy.w;
-    this->h = copy.h;
 }
 
 
@@ -54,8 +48,6 @@ Unit           &Unit::operator=(Unit const &copy)
 
     this->x = copy.x;
     this->y = copy.y;
-    this->w = copy.w;
-    this->h = copy.h;
 
 	return *this;
 }
@@ -71,6 +63,43 @@ Unit            &Unit::move(enum direction direction)
     return *this;
 }
 
+bool            Unit::include(Point const &p) const
+{
+    if (p.x < this->x || p.x >= this->x + this->w
+        || p.y < this->y || p.y >= this->y + this->h) {
+        return false;
+    }
+
+    //TODO: I could have optimized that if I wasn't a dumb ass
+    Point offset;
+
+    for (offset.y = 0; offset.y < this->h; offset.y++) {
+        for (offset.x = 0; offset.x < this->w; offset.x++) {
+            if (p == *this + offset && AT(this->sprite, offset) != EMPTY) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool            Unit::touch(Unit const &u) const
+{
+    Point offset, p;
+
+    for (offset.y = 0; offset.y < u.h; offset.y++) {
+        for (offset.x = 0; offset.x < u.w; offset.x++) {
+            p = u + offset;
+            if (AT(u.sprite, p) && this->include(p)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 
 /*
 ** getter/setter
@@ -81,22 +110,4 @@ Unit           &Unit::set_coord(int new_x, int new_y)
     this->y = new_y;
 
 	return *this;
-}
-
-Unit           &Unit::set_size(int new_w, int new_h)
-{
-    this->w = new_w;
-    this->h = new_h;
-
-	return *this;
-}
-
-Unit           &Unit::set_dim(int new_x, int new_y, int new_w, int new_h)
-{
-    this->x = new_x;
-    this->y = new_y;
-    this->w = new_w;
-    this->h = new_h;
-
-    return *this;
 }

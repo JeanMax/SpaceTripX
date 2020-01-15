@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Point.class.hpp                                           (          )   //
+//   Unit.class.hpp                                            (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -10,26 +10,29 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef POINT_CLASS_HPP
-# define POINT_CLASS_HPP
+#ifndef UNIT_CLASS_HPP
+# define UNIT_CLASS_HPP
 
-# include <math.h>
 # include "log.hpp"
+# include "Point.class.hpp"
 
 
-class Point
+class Unit: public Point
 {
     public:
-        Point(int x = 0, int y = 0);
-        Point(Point const &copy);
-        ~Point(void);
-        Point &operator=(Point const &copy);
+        Unit(int x = 0, int y = 0, int w = 0, int h = 0);
+        Unit(Unit const &copy);
+        ~Unit(void);
+        Unit &operator=(Unit const &copy);
 
-        Point &set_coord(int x, int y);
-        double distance(Point const &rhs);
+        Unit &set_coord(int x, int y);
+        Unit &set_size(int w, int h);
+        Unit &set_dim(int x, int y, int w, int h);
+        // double distance(Point const &rhs);  // in Point
 
-        int x, y;
+        // int x, y;  // in Point
+        int w, h;
 };
 
 
-#endif //POINT_CLASS_HPP
+#endif //UNIT_CLASS_HPP

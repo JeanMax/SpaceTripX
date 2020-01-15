@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Point.class.cpp                                           (          )   //
+//   Unit.class.cpp                                            (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -10,47 +10,52 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "Point.class.hpp"
+#include "Unit.class.hpp"
 
 
 /*
 ** constructor
 */
-Point::Point(int new_x, int new_y)
+Unit::Unit(int new_x, int new_y, int new_w, int new_h):
+    Point(new_x, new_y)
 {
-	DEBUG("Point constructed (default).");
+	DEBUG("Unit constructed (default).");
 
-    this->x = new_x;
-    this->y = new_y;
+    this->w = new_w;
+    this->h = new_h;
 }
 
-Point::Point(Point const &copy)
+Unit::Unit(Unit const &copy)
 {
-	DEBUG("Point constructed (copy).");
+	DEBUG("Unit constructed (copy).");
 
     this->x = copy.x;
     this->y = copy.y;
+    this->w = copy.w;
+    this->h = copy.h;
 }
 
 
 /*
 ** destructor
 */
-Point::~Point(void)
+Unit::~Unit(void)
 {
-	DEBUG("Point destructed.");
+	DEBUG("Unit destructed.");
 }
 
 
 /*
 ** operator overload
 */
-Point           &Point::operator=(Point const &copy)
+Unit           &Unit::operator=(Unit const &copy)
 {
-	DEBUG("Point operator= called.");
+	DEBUG("Unit operator= called.");
 
     this->x = copy.x;
     this->y = copy.y;
+    this->w = copy.w;
+    this->h = copy.h;
 
 	return *this;
 }
@@ -59,19 +64,37 @@ Point           &Point::operator=(Point const &copy)
 /*
 ** public
 */
-double          Point::distance(Point const &rhs)
-{
-    return sqrt(pow(rhs.x - this->x, 2) - pow(rhs.y - this->y, 2));
-}
+// double          Unit::distance(Unit const &rhs)
+// {
+//     return sqrt(pow(rhs.x - this->x, 2) - pow(rhs.y - this->y, 2));
+// }
 
 
 /*
 ** getter/setter
 */
-Point           &Point::set_coord(int new_x, int new_y)
+Unit           &Unit::set_coord(int new_x, int new_y)
 {
     this->x = new_x;
     this->y = new_y;
 
 	return *this;
+}
+
+Unit           &Unit::set_size(int new_w, int new_h)
+{
+    this->w = new_w;
+    this->h = new_h;
+
+	return *this;
+}
+
+Unit           &Unit::set_dim(int new_x, int new_y, int new_w, int new_h)
+{
+    this->x = new_x;
+    this->y = new_y;
+    this->w = new_w;
+    this->h = new_h;
+
+    return *this;
 }

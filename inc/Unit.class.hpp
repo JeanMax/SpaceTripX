@@ -18,8 +18,6 @@
 
 # define AT(array, point) (array[point.y][point.x])
 
-# define EMPTY ' '
-
 enum direction
 {
     UP = 0,

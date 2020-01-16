@@ -65,39 +65,18 @@ Unit            &Unit::move(enum direction direction)
 
 bool            Unit::include(Point const &p) const
 {
-    if (p.x < this->x || p.x >= this->x + this->w
-        || p.y < this->y || p.y >= this->y + this->h) {
-        return false;
-    }
-
-    //TODO: I could have optimized that if I wasn't a dumb ass
-    Point offset;
-
-    for (offset.y = 0; offset.y < this->h; offset.y++) {
-        for (offset.x = 0; offset.x < this->w; offset.x++) {
-            if (p == *this + offset && AT(this->sprite, offset) != EMPTY) {
-                return true;
-            }
-        }
-    }
-
-    return false;
+    return !(
+        p.x < this->x || p.x >= this->x + this->w ||
+        p.y < this->y || p.y >= this->y + this->h
+     );
 }
 
 bool            Unit::touch(Unit const &u) const
 {
-    Point offset, p;
-
-    for (offset.y = 0; offset.y < u.h; offset.y++) {
-        for (offset.x = 0; offset.x < u.w; offset.x++) {
-            p = u + offset;
-            if (AT(u.sprite, p) && this->include(p)) {
-                return true;
-            }
-        }
-    }
-
-    return false;
+    return (
+        u.x + u.w >= this->x && u.x <= this->x + this->w &&
+        u.y + u.h >= this->y && u.y <= this->y + this->h
+    );
 }
 
 

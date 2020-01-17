@@ -27,9 +27,7 @@ class Frame
 {
     public:
         Frame(void);
-        Frame(Frame const &copy);
         ~Frame(void);
-        Frame &operator=(Frame const &copy);
 
         bool next(void);
 

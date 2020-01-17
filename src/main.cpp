@@ -11,64 +11,22 @@
 // ************************************************************************** //
 
 #include "proj3000.hpp"
-#include "Input.class.hpp"
+#include "Terminal.class.hpp"
 #include "Frame.class.hpp"
 
-static bool init()
+int         main(void)
 {
-	setlocale(LC_ALL, "");  // handle special symbol as 卐
-    initscr(); //init ncurses
-    cbreak();
-// #ifndef NDEBUG
-// 	raw();
-// #endif
-	noecho();
-
-    nonl();
-    intrflush(stdscr, false);
-    keypad(stdscr, true);  // add special chars as F{1-12}
-
-    timeout(READ_KEY_TIMEOUT_MS);
-	curs_set(false);
-
-    return true;
-}
-
-static int  finit(bool quit = false)
-{
-    endwin();
-
-    if (quit) {
-        exit(EXIT_SUCCESS);
-    }
-    return true;
-}
-
-int         main(int ac, char **av)
-{
-    MSG("ac: " << ac);
-    while (*av)
-        MSG("av: " << *av++);
-
-    if (!init()) {
-        return EXIT_FAILURE;
-    }
-
-    Input input = Input();
+    Terminal terminal = Terminal();
     Frame frame = Frame();
 
-    // DEBUG
-    while (input.get_last_key() != EXIT_KEY) {
+    while (terminal.get_last_key() != EXIT_KEY) {
         frame.next();
-        input.read_key();
-        clear();
-        MSG("key: " << input.get_last_key());
+        terminal.clear();
+        terminal.read_key();
+        //TODO: print stuffs
+        DEBUG("key: " << terminal.get_last_key());
+        terminal.refresh();
     }
-    // DEBUG
 
-
-    if (!finit()) {
-        return EXIT_FAILURE;
-    }
     return EXIT_SUCCESS;
 }

@@ -24,14 +24,6 @@ Frame::Frame()
     this->_prev_tick = this->_first_tick;
 }
 
-Frame::Frame(Frame const &copy)
-{
-	DEBUG("Frame constructed (copy).");
-
-    this->_first_tick = copy._first_tick;
-    this->_prev_tick = copy._prev_tick;
-}
-
 
 /*
 ** destructor
@@ -39,20 +31,6 @@ Frame::Frame(Frame const &copy)
 Frame::~Frame(void)
 {
 	DEBUG("Frame destructed.");
-}
-
-
-/*
-** operator overload
-*/
-Frame           &Frame::operator=(Frame const &copy)
-{
-	DEBUG("Frame operator= called.");
-
-    this->_first_tick = copy._first_tick;
-    this->_prev_tick = copy._prev_tick;
-
-	return *this;
 }
 
 

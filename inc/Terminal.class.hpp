@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Input.class.hpp                                           (          )   //
+//   Terminal.class.hpp                                        (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -10,9 +10,13 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef INPUT_CLASS_HPP
-# define INPUT_CLASS_HPP
+#ifndef TERMINAL_CLASS_HPP
+# define TERMINAL_CLASS_HPP
 
+# define GAME_WIDTH  80
+# define GAME_HEIGHT 42
+# define SCORE_WIDTH  GAME_WIDTH
+# define SCORE_HEIGHT 8
 
 # define NOT_A_KEY 0
 # define EXIT_KEY 27
@@ -29,22 +33,25 @@
 # include "log.hpp"
 
 
-class Input
+class Terminal
 {
     public:
-        Input(void);
-        Input(Input const &copy);
-        ~Input(void);
-        Input &operator=(Input const &copy);
+        Terminal(void);
+        ~Terminal(void);
 
         char read_key(void);
+        void refresh(void);
+        void clear(void);
 
         char get_last_key(void) const;
 
 
     protected:
         char _last_key = NOT_A_KEY;
+
+        WINDOW *_game_win = NULL;
+        WINDOW *_score_win = NULL;
 };
 
 
-#endif //INPUT_CLASS_HPP
+#endif //TERMINAL_CLASS_HPP

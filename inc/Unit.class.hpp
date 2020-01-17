@@ -14,7 +14,7 @@
 # define UNIT_CLASS_HPP
 
 # include "log.hpp"
-# include "Point.class.hpp"
+# include "Rectangle.class.hpp"
 
 # define AT(array, point) (array[point.y][point.x])
 
@@ -28,33 +28,20 @@ enum direction
 # define MAX_DIRECTIONS 4
 
 
-Point g_base_vectors[MAX_DIRECTIONS] = {
-             Point(0, 1),
-    Point(-1, 0),    Point(1, 0),
-            Point(0, -1),
-};
-
-
-class Unit: public Point
+class Unit: public Rectangle
 {
     public:
-        Unit(int x = 0, int y = 0);
+        Unit(const int x = 0, const int y = 0);
         Unit(Unit const &copy);
         ~Unit(void);
         Unit &operator=(Unit const &copy);
 
-        Unit &move(enum direction direction);
-        bool include(Point const &p) const;
-        bool touch(Unit const &u) const;
-
-        Unit &set_coord(int x, int y);
-
-        // double distance(Point const &rhs);  // in Point
-        // TODO: this is a bit tricky with w/h
+        Unit &move(const enum direction direction);
 
         // int x, y;  // in Point
         static const int w = 1, h = 1;
-        static constexpr const char sprite[h][w + 1] = {"O"};
+        static constexpr const char sprite[h + 1][w + 1] = {"O"};
+        static const Point base_vectors[MAX_DIRECTIONS];
 };
 
 

@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Point.class.hpp                                           (          )   //
+//   Rectangle.class.hpp                                       (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -10,32 +10,36 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef POINT_CLASS_HPP
-# define POINT_CLASS_HPP
+#ifndef RECTANGLE_CLASS_HPP
+# define RECTANGLE_CLASS_HPP
 
-# include <math.h>
 # include "log.hpp"
+# include "Point.class.hpp"
 
 
-class Point
+class Rectangle: public Point
 {
     public:
-        Point(const int x = 0, const int y = 0);
-        Point(Point const &copy);
-        ~Point(void);
-        Point &operator=(Point const &copy);
+        Rectangle(
+            const int x = 0, const int y = 0,
+            const int w = 1, const int h = 1
+        );
+        Rectangle(Rectangle const &copy);
+        ~Rectangle(void);
+        Rectangle &operator=(Rectangle const &copy);
 
-        bool  operator==(Point const &rhs) const;
-        Point operator+(Point const &rhs) const;
-        Point operator-(Point const &rhs) const;
-        void  operator+=(Point const &rhs);
-        void  operator-=(Point const &rhs);
+        bool include(Point const &r) const;
+        bool touch(Rectangle const &u) const;
 
-        Point &set_coord(const int x, const int y);
-        double distance(Point const &rhs) const;
+        Rectangle &set_coord(const int x, const int y);
+        Rectangle &set_size(const int w, const int h);
 
-        int x, y;
+        // double distance(Point const &rhs);  // in Point
+        // TODO: this is a bit tricky with w/h
+
+        // int x, y;  // in Point
+        int w, h;
 };
 
 
-#endif //POINT_CLASS_HPP
+#endif //RECTANGLE_CLASS_HPP

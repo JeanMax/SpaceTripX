@@ -16,12 +16,9 @@
 /*
 ** constructor
 */
-Point::Point(int new_x, int new_y)
+Point::Point(const int new_x, const int new_y) : x(new_x), y(new_y)
 {
 	DEBUG("Point constructed (default).");
-
-    this->x = new_x;
-    this->y = new_y;
 }
 
 Point::Point(Point const &copy)
@@ -72,12 +69,14 @@ Point           Point::operator-(Point const &rhs) const
 
 void            Point::operator+=(Point const &rhs)
 {
-    this->set_coord(this->x + rhs.x, this->y + rhs.y);
+    this->x += rhs.x;
+    this->y += rhs.y;
 }
 
 void            Point::operator-=(Point const &rhs)
 {
-	this->set_coord(this->x - rhs.x, this->y - rhs.y);
+    this->x -= rhs.x;
+    this->y -= rhs.y;
 }
 
 
@@ -93,7 +92,7 @@ double          Point::distance(Point const &rhs) const
 /*
 ** getter/setter
 */
-Point           &Point::set_coord(int new_x, int new_y)
+Point           &Point::set_coord(const int new_x, const int new_y)
 {
     this->x = new_x;
     this->y = new_y;

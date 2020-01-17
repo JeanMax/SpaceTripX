@@ -19,8 +19,11 @@ PROJECT = proj3000
 
 # file-names of the sources
 SRC_NAME = main.cpp  \
-           Terminal.class.cpp  Frame.class.cpp  \
-           Point.class.cpp  Unit.class.cpp
+           Point.class.cpp \
+           Rectangle.class.cpp \
+           Unit.class.cpp \
+           Terminal.class.cpp  \
+           Frame.class.cpp
 
 # folder-names of the sources
 SRC_PATH = src

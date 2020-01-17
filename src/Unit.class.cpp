@@ -12,11 +12,17 @@
 
 #include "Unit.class.hpp"
 
+const Point Unit::base_vectors[MAX_DIRECTIONS] = {
+             Point(0, 1),
+    Point(-1, 0),    Point(1, 0),
+            Point(0, -1),
+};
+
 
 /*
 ** constructor
 */
-Unit::Unit(int new_x, int new_y): Point(new_x, new_y)
+Unit::Unit(const int new_x, const int new_y): Rectangle(new_x, new_y)
 {
 	DEBUG("Unit constructed (default).");
 }
@@ -58,35 +64,7 @@ Unit           &Unit::operator=(Unit const &copy)
 */
 Unit            &Unit::move(enum direction direction)
 {
-    *this += g_base_vectors[direction];
+    *this += Unit::base_vectors[direction];
 
     return *this;
-}
-
-bool            Unit::include(Point const &p) const
-{
-    return !(
-        p.x < this->x || p.x >= this->x + this->w ||
-        p.y < this->y || p.y >= this->y + this->h
-     );
-}
-
-bool            Unit::touch(Unit const &u) const
-{
-    return (
-        u.x + u.w >= this->x && u.x <= this->x + this->w &&
-        u.y + u.h >= this->y && u.y <= this->y + this->h
-    );
-}
-
-
-/*
-** getter/setter
-*/
-Unit           &Unit::set_coord(int new_x, int new_y)
-{
-    this->x = new_x;
-    this->y = new_y;
-
-	return *this;
 }

@@ -26,12 +26,11 @@ SRC_NAME = main.cpp  \
            Unit.class.cpp \
            Player.class.cpp
 
-
 # folder-names of the sources
-SRC_PATH = src
+VPATH = src  src/term  src/units
 
 # folder-names containing headers files
-INC_PATH = inc
+INC_PATH = inc  inc/term  inc/units
 
 # where are your tests?
 TEST_DIR = test
@@ -157,7 +156,7 @@ $(PROJECT): $(OBJ)
 	$(CXX) $(CFLAGS) $(INC) $(LDFLAGS) $(OBJ) $(LDLIBS) -o $@
 
 # create object files (compile)
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp | $(OBJ_PATH)
+$(OBJ_PATH)/%.o: %.cpp | $(OBJ_PATH)
 	$(CXX) $(CPPFLAGS) $(CFLAGS) $(INC) -MMD -MP -c $< -o $@
 
 # create directory for compilation sub-products

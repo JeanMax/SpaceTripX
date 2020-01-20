@@ -11,9 +11,6 @@
 // ************************************************************************** //
 
 #include "proj3000.hpp"
-#include "Terminal.class.hpp"
-#include "Frame.class.hpp"
-#include "Player.class.hpp"       // DEBUG
 
 int         main(void)
 {

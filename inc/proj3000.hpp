@@ -14,7 +14,11 @@
 # define PROJ3000_HPP
 
 # include <cstdlib>  // EXIT_SUCCESS / EXIT_FAILURE
+
 # include "log.hpp"
+# include "Terminal.class.hpp"
+# include "Frame.class.hpp"
+# include "Player.class.hpp"       // DEBUG
 
 
 #endif  // PROJ3000_HPP

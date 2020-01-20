@@ -29,7 +29,7 @@ class Frame
         Frame(void);
         ~Frame(void);
 
-        bool next(void);
+        void next(void);
 
         unsigned int get_count(void) const;
 

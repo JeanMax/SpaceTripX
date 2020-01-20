@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Rectangle.class.hpp                                       (          )   //
+//   Player.class.hpp                                          (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -10,33 +10,28 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef RECTANGLE_CLASS_HPP
-# define RECTANGLE_CLASS_HPP
+#ifndef PLAYER_CLASS_HPP
+# define PLAYER_CLASS_HPP
+
+# define PLAYER_SPRITE { \
+    " ^ ", \
+    "^^^", \
+}
 
 # include "log.hpp"
-# include "Point.class.hpp"
+# include "Unit.class.hpp"
 
-
-class Rectangle: public Point
+class Player: public Unit
 {
     public:
-        Rectangle(
-            const int x = 1, const int y = 1,
-            const int w = 1, const int h = 1
-        );
-        Rectangle(Rectangle const &copy);
-        ~Rectangle(void);
-        Rectangle &operator=(Rectangle const &copy);
+        Player(const int x = 0, const int y = 0);
+        ~Player(void);
 
-        bool include(Point const &r) const;
-        bool touch(Rectangle const &u) const;
 
-        Rectangle &set_coord(const int x, const int y);
-        Rectangle &set_size(const int w, const int h);
-
-        // int x, y;  // in Point
-        int w, h;
+        // int x, y;                         // in Point
+        // int w, h;                         // in Rectangle
+        // std::vector<std::string> sprite;  // in Unit
 };
 
 
-#endif //RECTANGLE_CLASS_HPP
+#endif //PLAYER_CLASS_HPP

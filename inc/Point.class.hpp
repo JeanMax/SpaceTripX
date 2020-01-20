@@ -20,7 +20,7 @@
 class Point
 {
     public:
-        Point(const int x = 0, const int y = 0);
+        Point(const int x = 1, const int y = 1);
         Point(Point const &copy);
         ~Point(void);
         Point &operator=(Point const &copy);

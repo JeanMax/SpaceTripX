@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Rectangle.class.hpp                                       (          )   //
+//   Player.class.cpp                                          (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -10,33 +10,28 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef RECTANGLE_CLASS_HPP
-# define RECTANGLE_CLASS_HPP
-
-# include "log.hpp"
-# include "Point.class.hpp"
+#include "Player.class.hpp"
 
 
-class Rectangle: public Point
+/*
+** constructor
+*/
+Player::Player(const int new_x, const int new_y):
+    Unit(new_x, new_y, PLAYER_SPRITE)
 {
-    public:
-        Rectangle(
-            const int x = 1, const int y = 1,
-            const int w = 1, const int h = 1
-        );
-        Rectangle(Rectangle const &copy);
-        ~Rectangle(void);
-        Rectangle &operator=(Rectangle const &copy);
-
-        bool include(Point const &r) const;
-        bool touch(Rectangle const &u) const;
-
-        Rectangle &set_coord(const int x, const int y);
-        Rectangle &set_size(const int w, const int h);
-
-        // int x, y;  // in Point
-        int w, h;
-};
+	DEBUG("Player constructed (default).");
+}
 
 
-#endif //RECTANGLE_CLASS_HPP
+/*
+** destructor
+*/
+Player::~Player(void)
+{
+	DEBUG("Player destructed.");
+}
+
+
+/*
+** public
+*/

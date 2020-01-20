@@ -16,8 +16,13 @@
 /*
 ** constructor
 */
-Rectangle::Rectangle(int new_x, int new_y, const int new_w, const int new_h):
-    Point(new_x, new_y), w(new_w), h(new_h)
+Rectangle::Rectangle(
+    const int new_x, const int new_y,
+    const int new_w, const int new_h
+):
+    Point(new_x, new_y),
+    w(new_w),
+    h(new_h)
 {
 	DEBUG("Rectangle constructed (default).");
 }

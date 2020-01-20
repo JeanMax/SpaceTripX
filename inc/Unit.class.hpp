@@ -13,6 +13,8 @@
 #ifndef UNIT_CLASS_HPP
 # define UNIT_CLASS_HPP
 
+# include <string>
+# include <vector>
 # include "log.hpp"
 # include "Rectangle.class.hpp"
 
@@ -31,7 +33,10 @@ enum direction
 class Unit: public Rectangle
 {
     public:
-        Unit(const int x = 0, const int y = 0);
+        Unit(
+            const int x = 1, const int y = 1,
+            std::vector<std::string> sprite = {"0"}
+        );
         Unit(Unit const &copy);
         ~Unit(void);
         Unit &operator=(Unit const &copy);
@@ -39,9 +44,10 @@ class Unit: public Rectangle
         Unit &move(const enum direction direction);
 
         // int x, y;  // in Point
-        static const int w = 1, h = 1;
-        static constexpr const char sprite[h + 1][w + 1] = {"O"};
+        // int w, h;  // in Rectangle
         static const Point base_vectors[MAX_DIRECTIONS];
+
+        std::vector<std::string> sprite;
 };
 
 

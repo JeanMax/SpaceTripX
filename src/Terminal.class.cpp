@@ -68,18 +68,30 @@ char            Terminal::read_key(void)
 	return this->_last_key;
 }
 
-void            Terminal::clear(void)
+void            Terminal::clear(void) const
 {
     wclear(this->_game_win);
     wclear(this->_score_win);
 }
 
-void            Terminal::refresh(void)
+void            Terminal::refresh(void) const
 {
     box(this->_game_win, 0, 0);
     box(this->_score_win, 0, 0);
     wrefresh(this->_game_win);
     wrefresh(this->_score_win);
+}
+
+void            Terminal::print_unit(const Unit &u) const
+{
+    for (int i = 0; i < u.h; i++) {
+        mvwprintw(
+            this->_game_win,
+            u.y + i,
+            u.x,
+            u.sprite[i].c_str()
+       );
+    }
 }
 
 /*

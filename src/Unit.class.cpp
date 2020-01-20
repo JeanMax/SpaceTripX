@@ -22,7 +22,12 @@ const Point Unit::base_vectors[MAX_DIRECTIONS] = {
 /*
 ** constructor
 */
-Unit::Unit(const int new_x, const int new_y): Rectangle(new_x, new_y)
+Unit::Unit(
+    const int new_x, const int new_y,
+    std::vector<std::string> new_sprite
+):
+    Rectangle(new_x, new_y, new_sprite[0].size(), new_sprite.size()),
+    sprite(new_sprite)
 {
 	DEBUG("Unit constructed (default).");
 }
@@ -33,6 +38,8 @@ Unit::Unit(Unit const &copy)
 
     this->x = copy.x;
     this->y = copy.y;
+    this->w = copy.w;
+    this->h = copy.h;
 }
 
 
@@ -54,6 +61,8 @@ Unit           &Unit::operator=(Unit const &copy)
 
     this->x = copy.x;
     this->y = copy.y;
+    this->w = copy.w;
+    this->h = copy.h;
 
 	return *this;
 }
@@ -68,3 +77,10 @@ Unit            &Unit::move(enum direction direction)
 
     return *this;
 }
+
+
+
+
+/*
+** getter/setter
+*/

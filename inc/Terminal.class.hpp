@@ -31,7 +31,7 @@
 # include <curses.h>
 
 # include "log.hpp"
-
+# include "Unit.class.hpp"
 
 class Terminal
 {
@@ -40,11 +40,11 @@ class Terminal
         ~Terminal(void);
 
         char read_key(void);
-        void refresh(void);
-        void clear(void);
+        void refresh(void) const;
+        void clear(void) const;
+        void print_unit(const Unit &u) const;
 
         char get_last_key(void) const;
-
 
     protected:
         char _last_key = NOT_A_KEY;

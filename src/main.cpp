@@ -13,21 +13,21 @@
 #include "proj3000.hpp"
 #include "Terminal.class.hpp"
 #include "Frame.class.hpp"
-
-
-#include "Unit.class.hpp"       // DEBUG
+#include "Player.class.hpp"       // DEBUG
 
 int         main(void)
 {
     Terminal terminal = Terminal();
     Frame frame = Frame();
+    Player player = Player(10, 10);
 
     while (terminal.get_last_key() != EXIT_KEY) {
         frame.next();
         terminal.clear();
         terminal.read_key();
         //TODO: print stuffs
-        DEBUG("key: " << terminal.get_last_key());
+        // DEBUG("key: " << terminal.get_last_key());
+        terminal.print_unit(player);
         terminal.refresh();
     }
 

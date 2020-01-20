@@ -37,7 +37,7 @@ Frame::~Frame(void)
 /*
 ** public
 */
-bool            Frame::next(void)
+void            Frame::next(void)
 {
     milliseconds::rep frame_duration = duration_cast<milliseconds>(
         high_resolution_clock::now() - this->_prev_tick
@@ -51,10 +51,7 @@ bool            Frame::next(void)
     this->_prev_tick = high_resolution_clock::now();
     this->_count++;
 
-    DEBUG("frame duration: " << frame_duration);
-
-
-    return true;  // TODO
+    // DEBUG("frame duration: " << frame_duration);
 }
 
 

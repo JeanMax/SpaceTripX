@@ -16,7 +16,7 @@ int         main(void)
 {
     Terminal term = Terminal();
     Frame frame = Frame();
-    Player player = Player(10, 10);
+    Player player = Player(GAME_WIDTH / 2 - 3, GAME_HEIGHT - 3);
     Rectangle map = Rectangle(1, 1, GAME_WIDTH - 2, GAME_HEIGHT - 2); // DEBUG
 
     term.in->add_key_event(on_player_left_key, KEY_LEFT, &player);
@@ -26,6 +26,10 @@ int         main(void)
 
     while (!term.in->exit) {
         frame.next();
+        if (term.out->is_too_small()) {
+            continue;
+        }
+
         term.in->read_keys();
         player.play();
 

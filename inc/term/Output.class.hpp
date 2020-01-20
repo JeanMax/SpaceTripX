@@ -13,10 +13,10 @@
 #ifndef OUTPUT_CLASS_HPP
 # define OUTPUT_CLASS_HPP
 
-# define GAME_WIDTH  80
-# define GAME_HEIGHT 42
+# define GAME_WIDTH  40
+# define GAME_HEIGHT 40
 # define SCORE_WIDTH  GAME_WIDTH
-# define SCORE_HEIGHT 8
+# define SCORE_HEIGHT 5
 
 # include <curses.h>
 
@@ -34,8 +34,10 @@ class Output
         void clear(void) const;
         void print_unit(const Unit &u) const;
         //TODO: print score
+        bool is_too_small(void);
 
     protected:
+        bool    _is_too_small = false;
         WINDOW *_game_win = NULL;
         WINDOW *_score_win = NULL;
 };

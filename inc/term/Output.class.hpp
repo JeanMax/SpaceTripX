@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Terminal.class.cpp                                        (          )   //
+//   Output.class.hpp                                          (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -10,33 +10,35 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "Terminal.class.hpp"
+#ifndef OUTPUT_CLASS_HPP
+# define OUTPUT_CLASS_HPP
+
+# define GAME_WIDTH  80
+# define GAME_HEIGHT 42
+# define SCORE_WIDTH  GAME_WIDTH
+# define SCORE_HEIGHT 8
+
+# include <curses.h>
+
+# include "log.hpp"
+# include "Unit.class.hpp"
 
 
-/*
-** constructor
-*/
-Terminal::Terminal()
+class Output
 {
-	DEBUG("Terminal constructed (default).");
+    public:
+        Output(void);
+        ~Output(void);
 
-	setlocale(LC_ALL, "");
-    initscr();
+        void refresh(void) const;
+        void clear(void) const;
+        void print_unit(const Unit &u) const;
+        //TODO: print score
 
-    this->in = new Input();
-    this->out = new Output();
-}
+    protected:
+        WINDOW *_game_win = NULL;
+        WINDOW *_score_win = NULL;
+};
 
 
-/*
-** destructor
-*/
-Terminal::~Terminal(void)
-{
-	DEBUG("Terminal destructed.");
-
-    delete this->in;
-    delete this->out;
-
-    endwin();
-}
+#endif //OUTPUT_CLASS_HPP

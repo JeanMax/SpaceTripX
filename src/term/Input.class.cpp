@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Terminal.class.cpp                                        (          )   //
+//   Input.class.cpp                                           (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -10,33 +10,56 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "Terminal.class.hpp"
+#include "Input.class.hpp"
 
 
 /*
 ** constructor
 */
-Terminal::Terminal()
+Input::Input()
 {
-	DEBUG("Terminal constructed (default).");
+	DEBUG("Input constructed (default).");
 
-	setlocale(LC_ALL, "");
-    initscr();
+    cbreak();
+	noecho();
 
-    this->in = new Input();
-    this->out = new Output();
+    nonl();
+    intrflush(stdscr, false);
+    keypad(stdscr, true);
+
+	curs_set(false);
+    timeout(READ_KEY_TIMEOUT_MS);
 }
 
 
 /*
 ** destructor
 */
-Terminal::~Terminal(void)
+Input::~Input(void)
 {
-	DEBUG("Terminal destructed.");
-
-    delete this->in;
-    delete this->out;
-
-    endwin();
+	DEBUG("Input destructed.");
 }
+
+
+/*
+** public
+*/
+char            Input::read_key(void)
+{
+	int key = getch();
+
+	if (key == ERR) {
+        this->_last_key = NOT_A_KEY;
+        return this->_last_key;
+    }
+
+    flushinp();
+    this->_last_key = static_cast<char>(key);
+
+	return this->_last_key;
+}
+
+/*
+** getter/setter
+*/
+char            Input::get_last_key(void) const { return this->_last_key; }

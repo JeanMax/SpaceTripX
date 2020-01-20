@@ -18,12 +18,16 @@
 PROJECT = proj3000
 
 # file-names of the sources
-SRC_NAME = main.cpp  \
+SRC_NAME = main.cpp            \
+                               \
+           Frame.class.cpp     \
            Terminal.class.cpp  \
-           Frame.class.cpp \
-           Point.class.cpp \
+           Input.class.cpp     \
+           Output.class.cpp    \
+                               \
+           Point.class.cpp     \
            Rectangle.class.cpp \
-           Unit.class.cpp \
+           Unit.class.cpp      \
            Player.class.cpp
 
 # folder-names of the sources

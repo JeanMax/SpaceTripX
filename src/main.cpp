@@ -14,18 +14,18 @@
 
 int         main(void)
 {
-    Terminal terminal = Terminal();
+    Terminal term = Terminal();
     Frame frame = Frame();
     Player player = Player(10, 10);
 
-    while (terminal.get_last_key() != EXIT_KEY) {
+    while (term.in->get_last_key() != EXIT_KEY) {
         frame.next();
-        terminal.clear();
-        terminal.read_key();
+        term.out->clear();
+        term.in->read_key();
         //TODO: print stuffs
-        // DEBUG("key: " << terminal.get_last_key());
-        terminal.print_unit(player);
-        terminal.refresh();
+        // DEBUG("key: " << term.get_last_key());
+        term.out->print_unit(player);
+        term.out->refresh();
     }
 
     return EXIT_SUCCESS;

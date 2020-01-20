@@ -30,8 +30,3 @@ Player::~Player(void)
 {
 	DEBUG("Player destructed.");
 }
-
-
-/*
-** public
-*/

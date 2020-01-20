@@ -20,14 +20,27 @@
 
 # define AT(array, point) (array[point.y][point.x])
 
+
 enum direction
 {
-    UP = 0,
-    LEFT = 1,
-    RIGHT = 2,
-    DOWN = 3
+    TOP_LEFT    = 0,  TOP          = 1,  TOP_RIGHT    = 2,
+    LEFT        = 3,  NO_DIRECTION = 4,  RIGHT        = 5,
+    BOTTOM_LEFT = 6,  BOTTOM       = 7,  BOTTOM_RIGHT = 8,
 };
-# define MAX_DIRECTIONS 4
+# define MAX_DIRECTIONS 9
+
+
+enum action
+{
+    MOVE_TOP_LEFT     = 0,   MOVE_TOP     = 1,   MOVE_TOP_RIGHT     = 2,
+    MOVE_LEFT         = 3,   NO_ACTION    = 4,   MOVE_RIGHT         = 5,
+    MOVE_BOTTOM_LEFT  = 6,   MOVE_BOTTOM  = 7,   MOVE_BOTTOM_RIGHT  = 8,
+
+    SHOOT_TOP_LEFT    = 9,   SHOOT_TOP    = 10,  SHOOT_TOP_RIGHT    = 11,
+    SHOOT_LEFT        = 12,  SHOOT_SELF   = 13,  SHOOT_RIGHT        = 14,
+    SHOOT_BOTTOM_LEFT = 15,  SHOOT_BOTTOM = 16,  SHOOT_BOTTOM_RIGHT = 17,
+};
+# define MAX_ACTIONS 18
 
 
 class Unit: public Rectangle
@@ -48,6 +61,7 @@ class Unit: public Rectangle
         static const Point base_vectors[MAX_DIRECTIONS];
 
         std::vector<std::string> sprite;
+        enum direction direction = NO_DIRECTION;
 };
 
 

@@ -13,13 +13,14 @@
 #ifndef PLAYER_CLASS_HPP
 # define PLAYER_CLASS_HPP
 
-# define PLAYER_SPRITE { \
+# include "log.hpp"
+# include "Unit.class.hpp"
+
+# define PLAYER_SPRITE {                        \
     " ^ ", \
     "^^^", \
 }
 
-# include "log.hpp"
-# include "Unit.class.hpp"
 
 class Player: public Unit
 {
@@ -31,6 +32,8 @@ class Player: public Unit
         // int x, y;                         // in Point
         // int w, h;                         // in Rectangle
         // std::vector<std::string> sprite;  // in Unit
+        // enum direction direction;         // in Unit
+        enum action action = NO_ACTION;
 };
 
 

@@ -13,9 +13,9 @@
 #include "Unit.class.hpp"
 
 const Point Unit::base_vectors[MAX_DIRECTIONS] = {
-             Point(0, 1),
-    Point(-1, 0),    Point(1, 0),
-            Point(0, -1),
+    Point(-1, -1), Point(0, -1), Point(1, -1),
+    Point(-1, 0),  Point(0, 0),  Point(1, 0),
+    Point(-1, 1),  Point(0, 1),  Point(1, 1),
 };
 
 
@@ -77,10 +77,3 @@ Unit            &Unit::move(enum direction direction)
 
     return *this;
 }
-
-
-
-
-/*
-** getter/setter
-*/

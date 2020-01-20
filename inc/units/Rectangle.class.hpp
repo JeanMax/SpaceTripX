@@ -29,6 +29,7 @@ class Rectangle: public Point
         Rectangle &operator=(Rectangle const &copy);
 
         bool include(Point const &r) const;
+        bool outside(Rectangle const &u) const;
         bool touch(Rectangle const &u) const;
 
         Rectangle &set_coord(const int x, const int y);

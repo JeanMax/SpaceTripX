@@ -74,6 +74,14 @@ bool            Rectangle::include(Point const &p) const
      );
 }
 
+bool            Rectangle::outside(Rectangle const &r) const
+{
+    return (
+        this->x < r.x || this->x + this->w > r.x + r.w ||
+        this->y < r.y || this->y + this->h > r.y + r.h
+    );
+}
+
 bool            Rectangle::touch(Rectangle const &r) const
 {
     return (

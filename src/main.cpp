@@ -17,6 +17,7 @@ int         main(void)
     Terminal term = Terminal();
     Frame frame = Frame();
     Player player = Player(10, 10);
+    Rectangle map = Rectangle(1, 1, GAME_WIDTH - 2, GAME_HEIGHT - 2); // DEBUG
 
     term.in->add_key_event(on_player_left_key, KEY_LEFT, &player);
     term.in->add_key_event(on_player_right_key, KEY_RIGHT, &player);
@@ -27,6 +28,13 @@ int         main(void)
         frame.next();
         term.in->read_keys();
         player.play();
+
+        // DEBUG
+        if (player.outside(map)) {
+            break;
+        }
+        // DEBUG
+
         term.out->clear();
         term.out->print_unit(player);
         term.out->refresh();

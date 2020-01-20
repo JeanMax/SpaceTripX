@@ -28,6 +28,7 @@ class Player: public Unit
         Player(const int x = 0, const int y = 0);
         ~Player(void);
 
+        void play(void);
 
         // int x, y;                         // in Point
         // int w, h;                         // in Rectangle
@@ -35,6 +36,12 @@ class Player: public Unit
         // enum direction direction;         // in Unit
         enum action action = NO_ACTION;
 };
+
+
+void on_player_left_key(const int key, void *player_ptr);
+void on_player_right_key(const int key, void *player_ptr);
+void on_player_top_key(const int key, void *player_ptr);
+void on_player_bottom_key(const int key, void *player_ptr);
 
 
 #endif //PLAYER_CLASS_HPP

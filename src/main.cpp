@@ -18,12 +18,16 @@ int         main(void)
     Frame frame = Frame();
     Player player = Player(10, 10);
 
-    while (term.in->get_last_key() != EXIT_KEY) {
+    term.in->add_key_event(on_player_left_key, KEY_LEFT, &player);
+    term.in->add_key_event(on_player_right_key, KEY_RIGHT, &player);
+    term.in->add_key_event(on_player_top_key, KEY_UP, &player);
+    term.in->add_key_event(on_player_bottom_key, KEY_DOWN, &player);
+
+    while (!term.in->exit) {
         frame.next();
+        term.in->read_keys();
+        player.play();
         term.out->clear();
-        term.in->read_key();
-        //TODO: print stuffs
-        // DEBUG("key: " << term.get_last_key());
         term.out->print_unit(player);
         term.out->refresh();
     }

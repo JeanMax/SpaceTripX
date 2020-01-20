@@ -12,6 +12,29 @@
 
 #include "Player.class.hpp"
 
+/*
+** key event handlers
+*/
+void on_player_left_key(const int, void *player_ptr)
+{
+    static_cast<Player *>(player_ptr)->direction = LEFT;
+}
+
+void on_player_right_key(const int, void *player_ptr)
+{
+    static_cast<Player *>(player_ptr)->direction = RIGHT;
+}
+
+void on_player_top_key(const int, void *player_ptr)
+{
+    static_cast<Player *>(player_ptr)->direction = TOP;
+}
+
+void on_player_bottom_key(const int, void *player_ptr)
+{
+    static_cast<Player *>(player_ptr)->direction = BOTTOM;
+}
+
 
 /*
 ** constructor
@@ -29,4 +52,16 @@ Player::Player(const int new_x, const int new_y):
 Player::~Player(void)
 {
 	DEBUG("Player destructed.");
+}
+
+
+/*
+** public
+*/
+void            Player::play(void)
+{
+    this->move(this->direction);
+    this->direction = (NO_DIRECTION);
+
+    //TODO
 }

@@ -13,7 +13,7 @@
 #ifndef FRAME_CLASS_HPP
 # define FRAME_CLASS_HPP
 
-# define FRAME_PER_SECOND 2
+# define FRAME_PER_SECOND 16
 # define FRAME_DURATION_MS (1000 / FRAME_PER_SECOND)
 
 # include <thread>  // sleep_for

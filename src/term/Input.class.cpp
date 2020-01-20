@@ -12,6 +12,11 @@
 
 #include "Input.class.hpp"
 
+/*
+** key event handlers
+*/
+static void do_nothing(const int, void *) {}
+
 
 /*
 ** constructor
@@ -28,7 +33,9 @@ Input::Input()
     keypad(stdscr, true);
 
 	curs_set(false);
-    timeout(READ_KEY_TIMEOUT_MS);
+    nodelay(stdscr, TRUE);
+
+    this->reset_key_map();
 }
 
 
@@ -44,22 +51,36 @@ Input::~Input(void)
 /*
 ** public
 */
-char            Input::read_key(void)
+void            Input::read_keys(void)
 {
-	int key = getch();
 
-	if (key == ERR) {
-        this->_last_key = NOT_A_KEY;
-        return this->_last_key;
+    while (true) {
+        int key = getch();
+
+        if (key == ERR) {
+            flushinp();
+            return;
+        } else if (key == KEY_EXIT || key == KEY_ESC) {
+            this->exit = true;
+        }
+
+        this->key_handler_map[key % MAX_KEYS](
+            key,
+            this->key_data_map[key % MAX_KEYS]
+        );
     }
-
-    flushinp();
-    this->_last_key = static_cast<char>(key);
-
-	return this->_last_key;
 }
 
-/*
-** getter/setter
-*/
-char            Input::get_last_key(void) const { return this->_last_key; }
+void            Input::reset_key_map(void)
+{
+    for (int i = 0; i < MAX_KEYS; i++) {
+        this->key_handler_map[i] = do_nothing;
+        this->key_data_map[i] = NULL;
+    }
+}
+
+void            Input::add_key_event(key_event_handler *handler, int key, void *ptr)
+{
+    this->key_handler_map[key % MAX_KEYS] = handler;
+    this->key_data_map[key % MAX_KEYS] = ptr;
+}

@@ -13,19 +13,20 @@
 #ifndef INPUT_CLASS_HPP
 # define INPUT_CLASS_HPP
 
-# define NOT_A_KEY 0
-# define EXIT_KEY 27
-# define LEFT_KEY 'q'
-# define RIGHT_KEY 'd'
-# define UP_KEY 'z'
-# define DOWN_KEY 's'
-# define SHOOT_KEY ' '
-
-# define READ_KEY_TIMEOUT_MS 50
-
 # include <curses.h>
-
 # include "log.hpp"
+
+# define NOT_A_KEY 0
+# define KEY_ESC 27
+// # define LEFT_KEY 'q'
+// # define RIGHT_KEY 'd'
+// # define UP_KEY 'z'
+// # define DOWN_KEY 's'
+// # define SHOOT_KEY ' '
+
+# define MAX_KEYS 1024
+
+typedef void key_event_handler(const int key, void *ptr);
 
 
 class Input
@@ -34,11 +35,16 @@ class Input
         Input(void);
         ~Input(void);
 
-        char read_key(void);
-        char get_last_key(void) const;
+        void read_keys(void);
+        void reset_key_map(void);
+        void add_key_event(key_event_handler *handler, int key, void *ptr);
+
+        bool exit = false;
 
     protected:
-        char _last_key = NOT_A_KEY;
+        key_event_handler *key_handler_map[MAX_KEYS] = {0};
+        void              *key_data_map[MAX_KEYS] = {0};
+
 };
 
 

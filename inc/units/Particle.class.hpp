@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Game.class.hpp                                            (          )   //
+//   Particle.class.hpp                                        (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -11,39 +11,28 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef GAME_CLASS_HPP
-# define GAME_CLASS_HPP
+#ifndef PARTICLE_CLASS_HPP
+# define PARTICLE_CLASS_HPP
 
 # include "log.hpp"
+# include "Unit.class.hpp"
 
-# include "Random.class.hpp"
-# include "Output.class.hpp"  // just for windows dimensions
-
-# include "Rectangle.class.hpp"
-# include "Player.class.hpp"
-# include "Particle.class.hpp"
-
-# define MAX_PLAYERS 4
-# define MAX_PARTICLES 20
+# define PARTICLE_SPRITE {"."}
 
 
-class Game
+class Particle: public Unit
 {
     public:
-        Game(const int n_players = 1);
-        ~Game(void);
+        Particle(const int x = 0, const int y = 0);
+        ~Particle(void);
 
         void play_turn(void);
-        bool game_over(void) const;
 
-        Player    players[MAX_PLAYERS];
-        Particle  particles[MAX_PARTICLES];
-
-    protected:
-        Random    _random = Random(1, GAME_WIDTH - 2);
-        Rectangle _map = Rectangle(1, 1, GAME_WIDTH - 2, GAME_HEIGHT - 2);
-        const int _n_players;
+        // int x, y;                         // in Point
+        // int w, h;                         // in Rectangle
+        // std::vector<std::string> sprite;  // in Unit
+        // enum direction direction;         // in Unit
 };
 
 
-#endif //GAME_CLASS_HPP
+#endif //PARTICLE_CLASS_HPP

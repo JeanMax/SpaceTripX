@@ -34,6 +34,14 @@ Game::Game(const int n_players) : _n_players(n_players)
             GAME_HEIGHT - 3
         );
     }
+
+
+    for (i = 0; i < MAX_PARTICLES; i++) {
+        this->particles[i].set_coord(
+            this->_random.generate(),
+            this->_random.generate()
+        );
+    }
 }
 
 
@@ -52,8 +60,9 @@ Game::~Game(void)
 void            Game::play_turn(void)
 {
     Point prev_pos;
+    int i;
 
-    for (int i = 0; i < this->_n_players; i++) {
+    for (i = 0; i < this->_n_players; i++) {
         if (!this->players[i].is_alive()) {
             continue;
         }
@@ -62,6 +71,15 @@ void            Game::play_turn(void)
         this->players[i].play_turn();
         if (this->players[i].outside(this->_map)) {
             this->players[i].set_coord(prev_pos.x, prev_pos.y);
+        }
+    }
+
+
+    for (i = 0; i < MAX_PARTICLES; i++) {
+        this->particles[i].play_turn();
+        if (this->particles[i].outside(this->_map)) {
+            this->particles[i].set_coord(this->_random.generate(), 1);
+            // this->particles[i].y = 1;
         }
     }
 }

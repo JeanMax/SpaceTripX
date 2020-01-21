@@ -22,6 +22,7 @@ PROJECT = proj3000
 SRC_NAME = main.cpp            \
            Game.class.cpp      \
                                \
+           Random.class.cpp    \
            Frame.class.cpp     \
            Terminal.class.cpp  \
            Input.class.cpp     \
@@ -30,7 +31,8 @@ SRC_NAME = main.cpp            \
            Point.class.cpp     \
            Rectangle.class.cpp \
            Unit.class.cpp      \
-           Player.class.cpp
+           Player.class.cpp      \
+           Particle.class.cpp
 
 # folder-names of the sources
 VPATH = src  src/term  src/units

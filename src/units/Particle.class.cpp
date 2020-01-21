@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Game.class.hpp                                            (          )   //
+//   Particle.class.cpp                                        (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -11,39 +11,36 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef GAME_CLASS_HPP
-# define GAME_CLASS_HPP
-
-# include "log.hpp"
-
-# include "Random.class.hpp"
-# include "Output.class.hpp"  // just for windows dimensions
-
-# include "Rectangle.class.hpp"
-# include "Player.class.hpp"
-# include "Particle.class.hpp"
-
-# define MAX_PLAYERS 4
-# define MAX_PARTICLES 20
+#include "Particle.class.hpp"
 
 
-class Game
+/*
+** constructor
+*/
+Particle::Particle(const int new_x, const int new_y):
+    Unit(new_x, new_y, PARTICLE_SPRITE)
 {
-    public:
-        Game(const int n_players = 1);
-        ~Game(void);
+	DEBUG("Particle constructed (default).");
 
-        void play_turn(void);
-        bool game_over(void) const;
-
-        Player    players[MAX_PLAYERS];
-        Particle  particles[MAX_PARTICLES];
-
-    protected:
-        Random    _random = Random(1, GAME_WIDTH - 2);
-        Rectangle _map = Rectangle(1, 1, GAME_WIDTH - 2, GAME_HEIGHT - 2);
-        const int _n_players;
-};
+    this->direction = BOTTOM;
+}
 
 
-#endif //GAME_CLASS_HPP
+/*
+** destructor
+*/
+Particle::~Particle(void)
+{
+	DEBUG("Particle destructed.");
+}
+
+
+/*
+** public
+*/
+void            Particle::play_turn(void)
+{
+    this->move(this->direction);
+
+    //TODO: move to top if necessary
+}

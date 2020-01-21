@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Game.class.hpp                                            (          )   //
+//   Random.class.cpp                                          (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -11,39 +11,35 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef GAME_CLASS_HPP
-# define GAME_CLASS_HPP
-
-# include "log.hpp"
-
-# include "Random.class.hpp"
-# include "Output.class.hpp"  // just for windows dimensions
-
-# include "Rectangle.class.hpp"
-# include "Player.class.hpp"
-# include "Particle.class.hpp"
-
-# define MAX_PLAYERS 4
-# define MAX_PARTICLES 20
+#include "Random.class.hpp"
 
 
-class Game
+/*
+** constructor
+*/
+Random::Random(const int min, const int max)
 {
-    public:
-        Game(const int n_players = 1);
-        ~Game(void);
+	DEBUG("Random constructed (default).");
 
-        void play_turn(void);
-        bool game_over(void) const;
-
-        Player    players[MAX_PLAYERS];
-        Particle  particles[MAX_PARTICLES];
-
-    protected:
-        Random    _random = Random(1, GAME_WIDTH - 2);
-        Rectangle _map = Rectangle(1, 1, GAME_WIDTH - 2, GAME_HEIGHT - 2);
-        const int _n_players;
-};
+    std::random_device rd;
+    this->mt = std::mt19937(rd());
+    this->dist = std::uniform_int_distribution<int>(min, max);
+}
 
 
-#endif //GAME_CLASS_HPP
+/*
+** destructor
+*/
+Random::~Random(void)
+{
+	DEBUG("Random destructed.");
+}
+
+
+/*
+** public
+*/
+int             Random::generate(void)
+{
+    return this->dist(mt);
+}

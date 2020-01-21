@@ -59,16 +59,12 @@ int         main(int ac, char **)
 
         term.in->read_keys();
         game.play_turn();
-
-        // // DEBUG
-        // if (player.outside(map)) {
-        //     break;
-        // }
-        // // DEBUG
-
         term.out->clear();
 
         // DEBUG
+        for (int i = 0; i < MAX_PARTICLES; i++) {
+            term.out->print_unit(game.particles[i]);
+        }
         for (int i = 0; i < ac; i++) {
             term.out->print_unit(game.players[i]);
         }

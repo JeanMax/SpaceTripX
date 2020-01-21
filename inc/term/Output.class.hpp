@@ -15,7 +15,7 @@
 # define OUTPUT_CLASS_HPP
 
 # define GAME_WIDTH  40
-# define GAME_HEIGHT 40
+# define GAME_HEIGHT GAME_WIDTH
 # define SCORE_WIDTH  GAME_WIDTH
 # define SCORE_HEIGHT 5
 

@@ -38,6 +38,7 @@ Input::Input()
 
 	curs_set(false);
     nodelay(stdscr, TRUE);
+    ESCDELAY = 0;
     this->reset_key_map();
 }
 
@@ -56,18 +57,19 @@ Input::~Input(void)
 */
 void            Input::read_keys(void)
 {
-
     while (true) {
         int key = getch();
 
         if (key == ERR) {
+            DEBUG(""); // DEBUG
             flushinp();
             return;
         }
 
         key = key % MAX_KEYS;
-        if (this->key_handler_map[key]) {
-            this->key_handler_map[key](key, this->key_data_map[key]);
+        if (this->_key_handler_map[key]) {
+            this->_key_handler_map[key](key, this->_key_data_map[key]);
+            DEBUG("key: " << key); // DEBUG
         }
     }
 }
@@ -75,23 +77,20 @@ void            Input::read_keys(void)
 void            Input::reset_key_map(void)
 {
     for (int i = 0; i < MAX_KEYS; i++) {
-        this->key_handler_map[i] = NULL;
-        this->key_data_map[i] = NULL;
+        this->_key_handler_map[i] = NULL;
+        this->_key_data_map[i] = NULL;
     }
 
-    this->key_handler_map[KEY_ESC] = on_exit;
-    this->key_data_map[KEY_ESC] = this;
+    this->_key_handler_map[KEY_ESC] = on_exit;
+    this->_key_data_map[KEY_ESC] = this;
 
-    this->key_handler_map[KEY_EXIT] = on_exit;
-    this->key_data_map[KEY_EXIT] = this;
-
-    this->key_handler_map[KEY_F(1)] = on_exit;
-    this->key_data_map[KEY_F(1)] = this;
+    this->_key_handler_map[KEY_EXIT] = on_exit;
+    this->_key_data_map[KEY_EXIT] = this;
 }
 
 void            Input::add_key_event(key_event_handler *handler,
                                      int key, void *ptr)
 {
-    this->key_handler_map[key % MAX_KEYS] = handler;
-    this->key_data_map[key % MAX_KEYS] = ptr;
+    this->_key_handler_map[key % MAX_KEYS] = handler;
+    this->_key_data_map[key % MAX_KEYS] = ptr;
 }

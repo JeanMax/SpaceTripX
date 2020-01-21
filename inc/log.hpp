@@ -30,7 +30,7 @@
 #  define MSG(s)     std::cout << CLR_BLUE    "[MSG] "     CLR_RESET << s << std::endl
 #  define ERROR(s)   std::cerr << CLR_RED     "[ERROR] "   CLR_RESET << s << std::endl
 #  define WARNING(s) std::cerr << CLR_YELLOW  "[WARNING] " CLR_RESET << s << std::endl
-#  define DEBUG(s)   std::cout << CLR_MAGENTA "[DEBUG] "   CLR_RESET << s << std::endl
+#  define DEBUG(s)   std::cerr << CLR_MAGENTA "[DEBUG] "   CLR_RESET << s << std::endl
 # else
 #  define MSG(s)     std::cout << s << std::endl
 #  define ERROR(s)   std::cerr << s << std::endl

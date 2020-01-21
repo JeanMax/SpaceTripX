@@ -56,6 +56,8 @@ class Unit: public Rectangle
         Unit &operator=(Unit const &copy);
 
         Unit &move(const enum direction direction);
+        Unit &kill(void);
+        bool is_alive(void) const;
 
         // int x, y;  // in Point
         // int w, h;  // in Rectangle
@@ -63,6 +65,7 @@ class Unit: public Rectangle
 
         std::vector<std::string> sprite;
         enum direction direction = NO_DIRECTION;
+        int life = 1;
 };
 
 

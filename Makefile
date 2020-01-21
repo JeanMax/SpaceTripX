@@ -20,6 +20,7 @@ PROJECT = proj3000
 
 # file-names of the sources
 SRC_NAME = main.cpp            \
+           Game.class.cpp      \
                                \
            Frame.class.cpp     \
            Terminal.class.cpp  \

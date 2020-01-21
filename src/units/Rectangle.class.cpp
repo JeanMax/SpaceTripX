@@ -51,7 +51,7 @@ Rectangle::~Rectangle(void)
 /*
 ** operator overload
 */
-Rectangle           &Rectangle::operator=(Rectangle const &copy)
+Rectangle       &Rectangle::operator=(Rectangle const &copy)
 {
 	DEBUG("Rectangle operator= called.");
 
@@ -95,7 +95,7 @@ bool            Rectangle::touch(Rectangle const &r) const
 /*
 ** getter/setter
 */
-Rectangle           &Rectangle::set_coord(const int new_x, const int new_y)
+Rectangle       &Rectangle::set_coord(const int new_x, const int new_y)
 {
     this->x = new_x;
     this->y = new_y;
@@ -103,7 +103,7 @@ Rectangle           &Rectangle::set_coord(const int new_x, const int new_y)
 	return *this;
 }
 
-Rectangle           &Rectangle::set_size(const int new_w, const int new_h)
+Rectangle       &Rectangle::set_size(const int new_w, const int new_h)
 {
     this->w = new_w;
     this->h = new_h;

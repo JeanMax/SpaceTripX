@@ -59,10 +59,12 @@ Player::~Player(void)
 /*
 ** public
 */
-void            Player::play(void)
+void            Player::play_turn(void)
 {
     this->move(this->direction);
-    this->direction = NO_DIRECTION;
+    //TODO: add diag movement
 
-    //TODO
+    // this->direction = NO_DIRECTION;
+
+    //TODO: shoot and stuffs
 }

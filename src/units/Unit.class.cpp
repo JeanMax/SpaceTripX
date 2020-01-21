@@ -78,3 +78,15 @@ Unit            &Unit::move(enum direction direction)
 
     return *this;
 }
+
+Unit            &Unit::kill(void)
+{
+    this->life = 0;
+
+    return *this;
+}
+
+bool            Unit::is_alive(void) const
+{
+    return this->life > 0;
+}

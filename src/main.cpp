@@ -13,17 +13,43 @@
 
 #include "proj3000.hpp"
 
-int         main(void)
+static void init_keymap(const Terminal &term, const Game &game)
+{
+    void *player_ptr;
+
+    player_ptr = (void *)&game.players[0];
+    term.in->add_key_event(on_player_left_key,   'q', player_ptr);
+    term.in->add_key_event(on_player_right_key,  'd', player_ptr);
+    term.in->add_key_event(on_player_top_key,    'z', player_ptr);
+    term.in->add_key_event(on_player_bottom_key, 's', player_ptr);
+
+    player_ptr = (void *)&game.players[1];
+    term.in->add_key_event(on_player_left_key,   'k', player_ptr);
+    term.in->add_key_event(on_player_right_key,  'm', player_ptr);
+    term.in->add_key_event(on_player_top_key,    'o', player_ptr);
+    term.in->add_key_event(on_player_bottom_key, 'l', player_ptr);
+
+    player_ptr = (void *)&game.players[2];
+    term.in->add_key_event(on_player_left_key,   KEY_LEFT,  player_ptr);
+    term.in->add_key_event(on_player_right_key,  KEY_RIGHT, player_ptr);
+    term.in->add_key_event(on_player_top_key,    KEY_UP,    player_ptr);
+    term.in->add_key_event(on_player_bottom_key, KEY_DOWN,  player_ptr);
+
+    player_ptr = (void *)&game.players[3];
+    term.in->add_key_event(on_player_left_key,   '1', player_ptr);
+    term.in->add_key_event(on_player_right_key,  '3', player_ptr);
+    term.in->add_key_event(on_player_top_key,    '5', player_ptr);
+    term.in->add_key_event(on_player_bottom_key, '2', player_ptr);
+}
+
+int         main(int ac, char **)
 {
     Terminal term = Terminal();
     Frame frame = Frame();
-    Player player = Player(GAME_WIDTH / 2 - 3, GAME_HEIGHT - 3);
-    Rectangle map = Rectangle(1, 1, GAME_WIDTH - 2, GAME_HEIGHT - 2); // DEBUG
+    Game game = Game(ac);
 
-    term.in->add_key_event(on_player_left_key, KEY_LEFT, &player);
-    term.in->add_key_event(on_player_right_key, KEY_RIGHT, &player);
-    term.in->add_key_event(on_player_top_key, KEY_UP, &player);
-    term.in->add_key_event(on_player_bottom_key, KEY_DOWN, &player);
+
+    init_keymap(term, game);
 
     while (!term.in->exit) {
         frame.next();
@@ -32,16 +58,22 @@ int         main(void)
         }
 
         term.in->read_keys();
-        player.play();
+        game.play_turn();
+
+        // // DEBUG
+        // if (player.outside(map)) {
+        //     break;
+        // }
+        // // DEBUG
+
+        term.out->clear();
 
         // DEBUG
-        if (player.outside(map)) {
-            break;
+        for (int i = 0; i < ac; i++) {
+            term.out->print_unit(game.players[i]);
         }
         // DEBUG
 
-        term.out->clear();
-        term.out->print_unit(player);
         term.out->refresh();
     }
 

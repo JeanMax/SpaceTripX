@@ -29,7 +29,7 @@ class Player: public Unit
         Player(const int x = 0, const int y = 0);
         ~Player(void);
 
-        void play(void);
+        void play_turn(void);
 
         // int x, y;                         // in Point
         // int w, h;                         // in Rectangle

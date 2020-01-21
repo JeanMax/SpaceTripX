@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Input.class.hpp                                           (          )   //
+//   Game.class.hpp                                            (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -11,41 +11,32 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef INPUT_CLASS_HPP
-# define INPUT_CLASS_HPP
+#ifndef GAME_CLASS_HPP
+# define GAME_CLASS_HPP
 
-# include <curses.h>
 # include "log.hpp"
+# include "Rectangle.class.hpp"
+# include "Player.class.hpp"
+# include "Output.class.hpp"  // just for windows dimensions
 
-# define NOT_A_KEY 0
-# define KEY_ESC 27
-// # define LEFT_KEY 'q'
-// # define RIGHT_KEY 'd'
-// # define UP_KEY 'z'
-// # define DOWN_KEY 's'
-// # define SHOOT_KEY ' '
-
-# define MAX_KEYS 1024
-
-typedef void key_event_handler(const int key, void *ptr);
+# define MAX_PLAYERS 4
 
 
-class Input
+class Game
 {
     public:
-        Input(void);
-        ~Input(void);
+        Game(const int n_players = 1);
+        ~Game(void);
 
-        void read_keys(void);
-        void reset_key_map(void);
-        void add_key_event(key_event_handler *handler, int key, void *ptr);
+        void play_turn(void);
+        bool game_over(void) const;
 
-        bool exit = false;
+        Player    players[MAX_PLAYERS];
 
     protected:
-        key_event_handler *_key_handler_map[MAX_KEYS] = {0};
-        void              *_key_data_map[MAX_KEYS] = {0};
+        Rectangle _map = Rectangle(1, 1, GAME_WIDTH - 2, GAME_HEIGHT - 2);
+        const int _n_players;
 };
 
 
-#endif //INPUT_CLASS_HPP
+#endif //GAME_CLASS_HPP

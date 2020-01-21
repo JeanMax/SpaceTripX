@@ -19,7 +19,7 @@
 # include "log.hpp"
 # include "Terminal.class.hpp"
 # include "Frame.class.hpp"
-# include "Player.class.hpp"       // DEBUG
+# include "Game.class.hpp"
 
 
 #endif  // PROJ3000_HPP

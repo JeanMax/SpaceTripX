@@ -4,8 +4,9 @@
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
+//     "THE BEER-WARE LICENSE" (Revision 42):                 | ]  :: '  [    //
 //   As long as you retain this notice you can do whatever    '=]): .)  ([    //
-//   you want with this stuff. If we meet some day, and you     |:: '    |    //
+//   you want with this stuff. If we meet some day, and you     |:: '   :|    //
 //   think this is worth it, you can buy me a beer in return.    ~~----~~     //
 //                                                                            //
 // ************************************************************************** //
@@ -15,11 +16,6 @@
 /*
 ** key event handlers
 */
-static void do_nothing(const int, void *)
-{
-    // nothing
-}
-
 static void on_exit(const int, void *input_ptr)
 {
     static_cast<Input *>(input_ptr)->exit = true;
@@ -69,17 +65,17 @@ void            Input::read_keys(void)
             return;
         }
 
-        this->key_handler_map[key % MAX_KEYS](
-            key,
-            this->key_data_map[key % MAX_KEYS]
-        );
+        key = key % MAX_KEYS;
+        if (this->key_handler_map[key]) {
+            this->key_handler_map[key](key, this->key_data_map[key]);
+        }
     }
 }
 
 void            Input::reset_key_map(void)
 {
     for (int i = 0; i < MAX_KEYS; i++) {
-        this->key_handler_map[i] = do_nothing;
+        this->key_handler_map[i] = NULL;
         this->key_data_map[i] = NULL;
     }
 

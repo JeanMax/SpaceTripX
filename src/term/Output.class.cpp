@@ -62,7 +62,7 @@ void            Output::print_unit(const Unit &u) const
             this->_game_win,
             u.y + i,
             u.x,
-            u.sprite[i].c_str()
+            u.sprite[static_cast<size_t>(i)].c_str()
        );
     }
 

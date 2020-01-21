@@ -17,25 +17,25 @@ static void init_keymap(const Terminal &term, const Game &game)
 {
     void *player_ptr;
 
-    player_ptr = (void *)&game.players[0];
+    player_ptr = static_cast<void *>( const_cast<Player *>(&game.players[0]) );
     term.in->add_key_event(on_player_left_key,   'q', player_ptr);
     term.in->add_key_event(on_player_right_key,  'd', player_ptr);
     term.in->add_key_event(on_player_top_key,    'z', player_ptr);
     term.in->add_key_event(on_player_bottom_key, 's', player_ptr);
 
-    player_ptr = (void *)&game.players[1];
+    player_ptr = static_cast<void *>( const_cast<Player *>(&game.players[1]) );
     term.in->add_key_event(on_player_left_key,   'k', player_ptr);
     term.in->add_key_event(on_player_right_key,  'm', player_ptr);
     term.in->add_key_event(on_player_top_key,    'o', player_ptr);
     term.in->add_key_event(on_player_bottom_key, 'l', player_ptr);
 
-    player_ptr = (void *)&game.players[2];
+    player_ptr = static_cast<void *>( const_cast<Player *>(&game.players[2]) );
     term.in->add_key_event(on_player_left_key,   KEY_LEFT,  player_ptr);
     term.in->add_key_event(on_player_right_key,  KEY_RIGHT, player_ptr);
     term.in->add_key_event(on_player_top_key,    KEY_UP,    player_ptr);
     term.in->add_key_event(on_player_bottom_key, KEY_DOWN,  player_ptr);
 
-    player_ptr = (void *)&game.players[3];
+    player_ptr = static_cast<void *>( const_cast<Player *>(&game.players[3]) );
     term.in->add_key_event(on_player_left_key,   '1', player_ptr);
     term.in->add_key_event(on_player_right_key,  '3', player_ptr);
     term.in->add_key_event(on_player_top_key,    '5', player_ptr);

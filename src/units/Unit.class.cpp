@@ -27,7 +27,12 @@ Unit::Unit(
     const int new_x, const int new_y,
     std::vector<std::string> new_sprite
 ):
-    Rectangle(new_x, new_y, new_sprite[0].size(), new_sprite.size()),
+    Rectangle(
+        new_x,
+        new_y,
+        static_cast<int>(new_sprite[0].size()),
+        static_cast<int>(new_sprite.size())
+    ),
     sprite(new_sprite)
 {
 	DEBUG("Unit constructed (default).");
@@ -72,9 +77,9 @@ Unit           &Unit::operator=(Unit const &copy)
 /*
 ** public
 */
-Unit            &Unit::move(enum direction direction)
+Unit            &Unit::move(enum direction new_direction)
 {
-    *this += Unit::base_vectors[direction];
+    *this += Unit::base_vectors[new_direction];
 
     return *this;
 }

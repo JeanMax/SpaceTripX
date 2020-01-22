@@ -68,6 +68,8 @@ Player::Player(const int new_x, const int new_y):
     Unit(new_x, new_y, PLAYER_SPRITE)
 {
 	DEBUG("Player constructed (default).");
+
+    this->life = INITIAL_PLAYER_LIFE;
 }
 
 

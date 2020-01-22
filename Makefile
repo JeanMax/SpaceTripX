@@ -31,7 +31,8 @@ SRC_NAME = main.cpp            \
            Point.class.cpp     \
            Rectangle.class.cpp \
            Unit.class.cpp      \
-           Player.class.cpp      \
+           Player.class.cpp    \
+           Monster.class.cpp   \
            Particle.class.cpp
 
 # folder-names of the sources

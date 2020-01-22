@@ -22,9 +22,13 @@
 # include "Rectangle.class.hpp"
 # include "Player.class.hpp"
 # include "Particle.class.hpp"
+# include "Monster.class.hpp"
 
 # define MAX_PLAYERS 4
 # define MAX_PARTICLES 20
+# define MAX_MONSTERS 32
+
+# define MONSTER_WAVE_INTERVAL 30
 
 
 class Game
@@ -37,11 +41,14 @@ class Game
         bool over(void) const;
 
         Player    players[MAX_PLAYERS];
+        Monster   monsters[MAX_MONSTERS];
         Particle  particles[MAX_PARTICLES];
 
     protected:
         Random    _random = Random(1, GAME_WIDTH - 2);
         Rectangle _map = Rectangle(1, 1, GAME_WIDTH - 2, GAME_HEIGHT - 2);
+        int _turns = 0;
+        int _n_monsters = 0;
         const int _n_players;
 };
 

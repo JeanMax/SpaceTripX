@@ -17,10 +17,13 @@
 # include "log.hpp"
 # include "Unit.class.hpp"
 
+# define INITIAL_PLAYER_LIFE 3
+
 # define PLAYER_SPRITE {                        \
-    " ^ ", \
-    "^^^", \
-}
+        " ^ ",                                  \
+        "^^^",                                  \
+    }
+
 
 
 class Player: public Unit
@@ -36,6 +39,7 @@ class Player: public Unit
         // std::vector<std::string> sprite;  // in Unit
         // enum direction direction;         // in Unit
         enum action action = NO_ACTION;
+        int score = 0;
 };
 
 

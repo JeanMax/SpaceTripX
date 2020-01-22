@@ -22,7 +22,7 @@ Output::Output()
 	DEBUG("Output constructed (default).");
 
     this->_game_win = newwin(GAME_HEIGHT, GAME_WIDTH, SCORE_HEIGHT, 0);
-    this->_score_win = newwin(SCORE_HEIGHT, SCORE_WIDTH, 0, 0);
+    this->score_win = newwin(SCORE_HEIGHT, SCORE_WIDTH, 0, 0);
 }
 
 
@@ -34,7 +34,7 @@ Output::~Output(void)
 	DEBUG("Output destructed.");
 
     delwin(this->_game_win);
-    delwin(this->_score_win);
+    delwin(this->score_win);
 }
 
 
@@ -44,15 +44,15 @@ Output::~Output(void)
 void            Output::clear(void) const
 {
     wclear(this->_game_win);
-    wclear(this->_score_win);
+    wclear(this->score_win);
 }
 
 void            Output::refresh(void) const
 {
     box(this->_game_win, 0, 0);
-    box(this->_score_win, 0, 0);
+    box(this->score_win, 0, 0);
     wrefresh(this->_game_win);
-    wrefresh(this->_score_win);
+    wrefresh(this->score_win);
 }
 
 void            Output::print_unit(const Unit &u) const
@@ -65,17 +65,12 @@ void            Output::print_unit(const Unit &u) const
             u.sprite[static_cast<size_t>(i)].c_str()
        );
     }
-
-    // DEBUG
-    int h, w;
-    getmaxyx(stdscr, h, w);
-    mvwprintw(this->_score_win, 1, 2, "stdscr: %dx%d", w, h);
-    getmaxyx(this->_game_win, h, w);
-    mvwprintw(this->_score_win, 2, 2, "this->_game_win: %dx%d", w, h);
-    getmaxyx(this->_score_win, h, w);
-    mvwprintw(this->_score_win, 3, 2, "this->_score_win: %dx%d", w, h);
-    // DEBUG
 }
+
+// void            Output::print_score(const std::string &s, const int y) const
+// {
+//     mvwprintw(this->score_win, y, 2, s.c_str());
+// }
 
 bool            Output::is_too_small(void)
 {
@@ -89,7 +84,7 @@ bool            Output::is_too_small(void)
 
     if (this->_is_too_small) {
         wresize(this->_game_win, GAME_HEIGHT, GAME_WIDTH);
-        wresize(this->_score_win, SCORE_HEIGHT, SCORE_WIDTH);
+        wresize(this->score_win, SCORE_HEIGHT, SCORE_WIDTH);
         this->_is_too_small = false;
     }
 

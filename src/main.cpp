@@ -42,12 +42,12 @@ static void init_keymap(const Terminal &term, const Game &game)
     term.in->add_key_event(on_player_bottom_key, '2', player_ptr);
 }
 
-int         main(int ac, char **)
+static void game_loop(int n_players, int *score)
 {
     Terminal term = Terminal();
     Frame frame = Frame();
-    Game game = Game(ac);
-
+    Game game = Game(n_players);
+    int i;
 
     init_keymap(term, game);
 
@@ -66,15 +66,44 @@ int         main(int ac, char **)
         term.out->clear();
 
         // DEBUG
-        for (int i = 0; i < MAX_PARTICLES; i++) {
+        for (i = 0; i < MAX_PARTICLES; i++) {
             term.out->print_unit(game.particles[i]);
         }
-        for (int i = 0; i < ac; i++) {
-            term.out->print_unit(game.players[i]);
+        for (i = 0; i < MAX_MONSTERS; i++) {
+            if (game.monsters[i].is_alive()) {
+                term.out->print_unit(game.monsters[i]);
+            }
+        }
+        for (i = 0; i < MAX_PLAYERS; i++) {
+            if (game.players[i].is_alive()) {
+                term.out->print_unit(game.players[i]);
+            }
+            PRINT_SCORE(
+                term.out->score_win,
+                i + 1,
+                "Player #%d  ~  Life: %d  ~  Score: %d",
+                i + 1,
+                game.players[i].life,
+                game.players[i].score
+            );
         }
         // DEBUG
 
         term.out->refresh();
+    }
+
+    for (i = 0; i < n_players; i++) {
+        score[i] = game.players[i].score;
+    }
+}
+
+int         main(int n_players, char **)
+{
+    int score[MAX_PLAYERS] = {0};
+    game_loop(n_players, (int *)&score);
+
+    for (int i = 0; i < n_players; i++) {
+        MSG("Player #" << i + 1 << "  ~  Score: " << score[i]);
     }
 
     return EXIT_SUCCESS;

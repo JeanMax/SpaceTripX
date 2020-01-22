@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Particle.class.cpp                                        (          )   //
+//   Monster.class.hpp                                         (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -11,34 +11,30 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "Particle.class.hpp"
+#ifndef MONSTER_CLASS_HPP
+# define MONSTER_CLASS_HPP
+
+# include "log.hpp"
+# include "Unit.class.hpp"
+
+# define MONSTER_SPRITE {   \
+        "|-o-|",            \
+    }
 
 
-/*
-** constructor
-*/
-Particle::Particle(const int new_x, const int new_y):
-    Unit(new_x, new_y, PARTICLE_SPRITE)
+class Monster: public Unit
 {
-	DEBUG("Particle constructed (default).");
+    public:
+        Monster(const int x = 0, const int y = 0);
+        ~Monster(void);
 
-    this->direction = BOTTOM;
-}
+        void play_turn(void);
 
-
-/*
-** destructor
-*/
-Particle::~Particle(void)
-{
-	DEBUG("Particle destructed.");
-}
+        // int x, y;                         // in Point
+        // int w, h;                         // in Rectangle
+        // std::vector<std::string> sprite;  // in Unit
+        // enum direction direction;         // in Unit
+};
 
 
-/*
-** public
-*/
-void            Particle::play_turn(void)
-{
-    this->move(this->direction);
-}
+#endif //MONSTER_CLASS_HPP

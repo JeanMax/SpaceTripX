@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   Particle.class.cpp                                        (          )   //
+//   Monster.class.cpp                                         (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -11,16 +11,16 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "Particle.class.hpp"
+#include "Monster.class.hpp"
 
 
 /*
 ** constructor
 */
-Particle::Particle(const int new_x, const int new_y):
-    Unit(new_x, new_y, PARTICLE_SPRITE)
+Monster::Monster(const int new_x, const int new_y):
+    Unit(new_x, new_y, MONSTER_SPRITE)
 {
-	DEBUG("Particle constructed (default).");
+	DEBUG("Monster constructed (default).");
 
     this->direction = BOTTOM;
 }
@@ -29,16 +29,16 @@ Particle::Particle(const int new_x, const int new_y):
 /*
 ** destructor
 */
-Particle::~Particle(void)
+Monster::~Monster(void)
 {
-	DEBUG("Particle destructed.");
+	DEBUG("Monster destructed.");
 }
 
 
 /*
 ** public
 */
-void            Particle::play_turn(void)
+void            Monster::play_turn(void)
 {
     this->move(this->direction);
 }

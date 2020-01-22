@@ -81,9 +81,18 @@ void            Game::play_turn(void)
         this->players[i].play_turn();
         if (this->players[i].outside(this->_map)) {
             this->players[i].set_coord(prev_pos.x, prev_pos.y);
+        } else {
+            // handle collisions monster/player
+            for (int j = 0; j < this->_n_players; j++) {
+                if (i != j
+                    && this->players[j].is_alive()
+                    && this->players[j].touch(this->players[i])) {
+                    this->players[i].set_coord(prev_pos.x, prev_pos.y);
+                    this->players[i].direction = NO_DIRECTION;
+                }
+            }
         }
     }
-
 
     // move particles
     for (i = 0; i < MAX_PARTICLES; i++) {

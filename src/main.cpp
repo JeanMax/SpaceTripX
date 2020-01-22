@@ -11,7 +11,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "proj3000.hpp"
+#include "space_trip_x.hpp"
 
 static void init_keymap(const Terminal &term, const Game &game)
 {

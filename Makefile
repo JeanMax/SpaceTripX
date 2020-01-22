@@ -16,7 +16,7 @@
 ##
 
 # name of the binary to make
-PROJECT = proj3000
+PROJECT = SpaceTripX
 
 # file-names of the sources
 SRC_NAME = main.cpp            \

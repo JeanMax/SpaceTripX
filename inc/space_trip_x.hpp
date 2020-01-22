@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                              _.._..,_,_    //
-//   proj3000.hpp                                              (          )   //
+//   space_trip_x.hpp                                          (          )   //
 //                                                              ]~,'-.-~~[    //
 //   By: mc <mc.maxcanal@gmail.com>                           .=])' (;  ([    //
 //                                                            | ]:)   '  [    //
@@ -11,8 +11,8 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef PROJ3000_HPP
-# define PROJ3000_HPP
+#ifndef SPACE_TRIP_X_HPP
+# define SPACE_TRIP_X_HPP
 
 # include <cstdlib>  // EXIT_SUCCESS / EXIT_FAILURE
 
@@ -22,4 +22,4 @@
 # include "Game.class.hpp"
 
 
-#endif  // PROJ3000_HPP
+#endif  // SPACE_TRIP_X_HPP

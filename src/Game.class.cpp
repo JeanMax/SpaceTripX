@@ -84,7 +84,7 @@ void            Game::play_turn(void)
     }
 }
 
-bool            Game::game_over(void) const
+bool            Game::over(void) const
 {
     for (int i = 0; i < this->_n_players; i++) {
         if (this->players[i].is_alive()) {

@@ -18,22 +18,46 @@
 */
 void on_player_left_key(const int, void *player_ptr)
 {
-    static_cast<Player *>(player_ptr)->direction = LEFT;
+    Player *player = static_cast<Player *>(player_ptr);
+
+    if (player->direction == RIGHT) {
+        player->direction = NO_DIRECTION;
+    } else {
+        player->direction = LEFT;
+    }
 }
 
 void on_player_right_key(const int, void *player_ptr)
 {
-    static_cast<Player *>(player_ptr)->direction = RIGHT;
+    Player *player = static_cast<Player *>(player_ptr);
+
+    if (player->direction == LEFT) {
+        player->direction = NO_DIRECTION;
+    } else {
+        player->direction = RIGHT;
+    }
 }
 
 void on_player_top_key(const int, void *player_ptr)
 {
-    static_cast<Player *>(player_ptr)->direction = TOP;
+    Player *player = static_cast<Player *>(player_ptr);
+
+    if (player->direction == BOTTOM) {
+        player->direction = NO_DIRECTION;
+    } else {
+        player->direction = TOP;
+    }
 }
 
 void on_player_bottom_key(const int, void *player_ptr)
 {
-    static_cast<Player *>(player_ptr)->direction = BOTTOM;
+    Player *player = static_cast<Player *>(player_ptr);
+
+    if (player->direction == TOP) {
+        player->direction = NO_DIRECTION;
+    } else {
+        player->direction = BOTTOM;
+    }
 }
 
 

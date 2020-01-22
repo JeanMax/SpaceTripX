@@ -56,6 +56,10 @@ int         main(int ac, char **)
         if (term.out->is_too_small()) {
             continue;
         }
+        if (game.over()) {
+            //TODO: back to menu
+            break;
+        }
 
         term.in->read_keys();
         game.play_turn();

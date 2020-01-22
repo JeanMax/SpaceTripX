@@ -34,7 +34,7 @@ class Game
         ~Game(void);
 
         void play_turn(void);
-        bool game_over(void) const;
+        bool over(void) const;
 
         Player    players[MAX_PLAYERS];
         Particle  particles[MAX_PARTICLES];

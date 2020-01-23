@@ -1,44 +1,28 @@
 image: archlinux
-# shell: true
 packages:
-  - g++
-# sources:
-#   - git@github.com:JeanMax/rmrf.git
-# secrets:
-#   - ed142522-17bb-4d9f-ac0e-3be58c6d78ac
-# environment:
-#   PIP_PROGRESS_BAR: 'off'
-#   DJANGO_SETTINGS_MODULE: 'webapp.website.settings.prod'
+  - clang
+sources:
+  - git@git.sr.ht:~jean-max/SpaceTripX
+secrets:
+  - ed142522-17bb-4d9f-ac0e-3be58c6d78ac
+environment:
+  PROJECT: SpaceTripX
 
 tasks:
-  # - checkout: |
-  #     printf "Host github.com\n    StrictHostKeyChecking no\n" >> ~/.ssh/config
-  #     cd rmrf
-  #     git checkout ${GITHUB_REF/refs\/heads\//}
-
-  # - venv: |
-  #     python3 -m venv ~/.venv
-  #     echo . ~/.venv/bin/activate >> ~/.buildenv
-
-  # - pip: |
-  #     pip install --upgrade pip setuptools
-
-  # - secrets: |
-  #       find ~ -name secrets.sh -exec echo . {} \; >> ~/.buildenv
-
-  # - postgres: |
-  #     sudo su postgres -c 'initdb -D /var/lib/postgres/data'
-  #     sudo systemctl start postgresql.service
-
-  # - locales: |
-  #     sudo sed -Ei 's/#(fr_FR.UTF-8)/\1/' /etc/locale.gen
-  #     sudo locale-gen
-
+  - checkout: |
+      cd $PROJECT
+      LAST_COMMIT_HASH=$(git log --remotes | head -n1 | cut -d' ' -f2)
+      git checkout $LAST_COMMIT_HASH
 
   - build: |
+      cd $PROJECT
       make mecry
-      make re
-      make dev
+      make san
 
   - test: |
-      false
+      cd $PROJECT
+      make test
+
+  - run: |
+      cd $PROJECT
+      timeout 10 ./$PROJECT.san || test $? = 124

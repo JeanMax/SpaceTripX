@@ -33,6 +33,8 @@ class Output
         Output(void);
         ~Output(void);
 
+        void init_curses(void);
+
         void refresh(void) const;
         void clear(void) const;
         void print_unit(const Unit &u) const;

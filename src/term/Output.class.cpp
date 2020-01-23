@@ -20,9 +20,6 @@
 Output::Output()
 {
 	DEBUG("Output constructed (default).");
-
-    this->_game_win = newwin(GAME_HEIGHT, GAME_WIDTH, SCORE_HEIGHT, 0);
-    this->score_win = newwin(SCORE_HEIGHT, SCORE_WIDTH, 0, 0);
 }
 
 
@@ -33,14 +30,24 @@ Output::~Output(void)
 {
 	DEBUG("Output destructed.");
 
-    delwin(this->_game_win);
-    delwin(this->score_win);
+    if (this->score_win) {
+        delwin(this->score_win);
+    }
+    if (this->_game_win) {
+        delwin(this->_game_win);
+    }
 }
 
 
 /*
 ** public
 */
+void            Output::init_curses(void)
+{
+    this->_game_win = newwin(GAME_HEIGHT, GAME_WIDTH, SCORE_HEIGHT, 0);
+    this->score_win = newwin(SCORE_HEIGHT, SCORE_WIDTH, 0, 0);
+}
+
 void            Output::clear(void) const
 {
     wclear(this->_game_win);

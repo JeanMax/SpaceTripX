@@ -65,8 +65,13 @@ DCFLAGS = $(WFLAGS) -g -D NDEBUG  # debug
 SCFLAGS = $(DCFLAGS) -fsanitize=address,undefined -ferror-limit=5  # sanitize
 WWFLAGS = $(WFLAGS) -Wpedantic -Wold-style-cast -Woverloaded-virtual \
                     -Wfloat-equal -Wwrite-strings -Wcast-align -Wconversion \
-                    -Wshadow -Weffc++ -Wredundant-decls -Winit-self \
-                    -Wswitch-default -Wswitch-enum -Wundef -Winline -Wunreachable-code
+                    -Wshadow -Wredundant-decls -Winit-self \
+                    -Wswitch-default -Wswitch-enum -Wundef -Winline \
+                    -Wunreachable-code -Wcast-qual -Wctor-dtor-privacy \
+                    -Wdisabled-optimization -Wsign-conversion -Wsign-promo \
+                    -Wformat=2 -Wmissing-declarations -Wmissing-include-dirs \
+                    -Wstrict-overflow=5  # -Weffc++ -Wpadded
+
 
 # folder used to store all compilations sub-products (.o and .d mostly)
 OBJ_DIR ?= obj

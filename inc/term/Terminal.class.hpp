@@ -27,9 +27,12 @@ class Terminal
         Terminal(void);
         ~Terminal(void);
 
-        //TODO : don't use pointers around here?
-        Input  *in;
-        Output *out;
+        // stupid non-const getter so I can do stuff with that dumb language
+        Input  &input();
+        Output &output();
+
+        Input  in;
+        Output out;
 };
 
 

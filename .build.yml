@@ -1,0 +1,44 @@
+image: archlinux
+# shell: true
+packages:
+  - g++
+# sources:
+#   - git@github.com:JeanMax/rmrf.git
+# secrets:
+#   - ed142522-17bb-4d9f-ac0e-3be58c6d78ac
+# environment:
+#   PIP_PROGRESS_BAR: 'off'
+#   DJANGO_SETTINGS_MODULE: 'webapp.website.settings.prod'
+
+tasks:
+  # - checkout: |
+  #     printf "Host github.com\n    StrictHostKeyChecking no\n" >> ~/.ssh/config
+  #     cd rmrf
+  #     git checkout ${GITHUB_REF/refs\/heads\//}
+
+  # - venv: |
+  #     python3 -m venv ~/.venv
+  #     echo . ~/.venv/bin/activate >> ~/.buildenv
+
+  # - pip: |
+  #     pip install --upgrade pip setuptools
+
+  # - secrets: |
+  #       find ~ -name secrets.sh -exec echo . {} \; >> ~/.buildenv
+
+  # - postgres: |
+  #     sudo su postgres -c 'initdb -D /var/lib/postgres/data'
+  #     sudo systemctl start postgresql.service
+
+  # - locales: |
+  #     sudo sed -Ei 's/#(fr_FR.UTF-8)/\1/' /etc/locale.gen
+  #     sudo locale-gen
+
+
+  - build: |
+      make mecry
+      make re
+      make dev
+
+  - test: |
+      false

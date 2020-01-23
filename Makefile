@@ -82,17 +82,17 @@ LN =		ln -s
 RM =		rm -f
 RMDIR =		rmdir
 MKDIR =		mkdir -p
-CXX =		$(shell hash clang++ 2>/dev/null && echo clang++ || echo g++) -std=c++11
+CXX ?=		$(shell hash clang++ 2>/dev/null && echo clang++ || echo g++) -std=c++11
 MAKE ?=		make -j$(shell nproc 2>/dev/null || echo 4)
 SUB_MAKE =	make -C
 
 # default to "pretty" Makefile, but you can run ´VERBOSE=t make´
 # ifndef VERBOSE
-#  ifndef TRAVIS
+#  ifndef CI
 # .SILENT:
 #  endif
 # endif
-# PRINTF = test $(VERBOSE)$(TRAVIS) || printf
+PRINTF = test $(VERBOSE)$(CI) || printf
 
 # some colors for pretty printing
 WHITE =		\033[37m
@@ -155,6 +155,11 @@ re: fclean
 test: all
 	$(PRINTF) "All tests passed!\n"
 
+# grep for all TODO tags in project
+todo:
+	! grep -rin todo . | grep -vE '^(Binary file|\./\.git|\./Makefile|flycheck_|\./\.build\.yml)'
+
+
 
 ##
 ## PRIVATE RULES
@@ -177,4 +182,5 @@ $(OBJ_PATH):
 
 # just to avoid conflicts between rules and files/folders names
 .PHONY: all, dev, san, mecry, $(PROJECT), \
-clean, fclean, mrproper, re, test
+clean, fclean, mrproper, re, \
+test, todo

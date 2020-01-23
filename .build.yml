@@ -17,10 +17,13 @@ tasks:
   - build: |
       cd $PROJECT
       make mecry
+      make mrproper
+      CXX=g++ make mecry
       make san
 
   - test: |
       cd $PROJECT
+      make todo || true
       make test
 
   - run: |

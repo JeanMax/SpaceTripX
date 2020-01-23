@@ -18,8 +18,9 @@ tasks:
       cd $PROJECT
       make mecry
       make mrproper
-      CXX=g++ make mecry
+      CXX=clang++ make mecry
       make san
+      make dev
 
   - test: |
       cd $PROJECT

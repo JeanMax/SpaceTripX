@@ -38,14 +38,11 @@ Unit::Unit(
 	DEBUG("Unit constructed (default).");
 }
 
-Unit::Unit(Unit const &copy)
+Unit::Unit(Unit const &copy):
+    Rectangle(copy.x, copy.y, copy.w, copy.h),
+    sprite(copy.sprite)
 {
 	DEBUG("Unit constructed (copy).");
-
-    this->x = copy.x;
-    this->y = copy.y;
-    this->w = copy.w;
-    this->h = copy.h;
 }
 
 

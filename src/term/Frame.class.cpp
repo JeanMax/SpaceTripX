@@ -17,12 +17,11 @@
 /*
 ** constructor
 */
-Frame::Frame()
+Frame::Frame():
+    _prev_tick(high_resolution_clock::now()),
+    _first_tick(_prev_tick)
 {
 	DEBUG("Frame constructed (default).");
-
-    this->_first_tick = high_resolution_clock::now();
-    this->_prev_tick = this->_first_tick;
 }
 
 

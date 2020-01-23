@@ -59,7 +59,7 @@ CPPFLAGS = -D VERBOSE
 ##
 
 # compilation/linking flags for the differents public rules
-WFLAGS = -Wextra -Wall  # warnings
+WFLAGS = -std=c++11 -Wextra -Wall  # warnings
 RCFLAGS = $(WFLAGS) -Werror -O2  # release
 DCFLAGS = $(WFLAGS) -g -D NDEBUG  # debug
 SCFLAGS = $(DCFLAGS) -fsanitize=address,undefined -ferror-limit=5  # sanitize
@@ -82,9 +82,8 @@ LN =		ln -s
 RM =		rm -f
 RMDIR =		rmdir
 MKDIR =		mkdir -p
-CXX ?=		$(shell hash clang++ 2>/dev/null && echo clang++ || echo g++) -std=c++11
+CXX ?=		g++
 MAKE ?=		make -j$(shell nproc 2>/dev/null || echo 4)
-SUB_MAKE =	make -C
 
 # default to "pretty" Makefile, but you can run ´VERBOSE=t make´
 # ifndef VERBOSE
@@ -124,7 +123,7 @@ dev:
 # build for runtime debugging (fsanitize)
 san:
 	+$(MAKE) $(PROJECT).san \
-		"PROJECT = $(PROJECT).san" \
+		"PROJECT = $(PROJECT).san" "CXX = clang++" \
 		"CFLAGS = $(SCFLAGS)" "OBJ_PATH = $(OBJ_DIR)/san"
 
 # remove all generated .o and .d

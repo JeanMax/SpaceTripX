@@ -17,13 +17,11 @@
 /*
 ** constructor
 */
-Random::Random(const int min, const int max)
+Random::Random(const int min, const int max):
+    _mt(_init_seed()),
+    _dist(std::uniform_int_distribution<int>(min, max))
 {
 	DEBUG("Random constructed (default).");
-
-    std::random_device rd;
-    this->mt = std::mt19937(rd());
-    this->dist = std::uniform_int_distribution<int>(min, max);
 }
 
 
@@ -37,9 +35,20 @@ Random::~Random(void)
 
 
 /*
+** private
+*/
+std::mt19937    Random::_init_seed(void)
+{
+    std::random_device rd;
+
+    return std::mt19937(rd());
+}
+
+
+/*
 ** public
 */
 int             Random::generate(void)
 {
-    return this->dist(mt);
+    return this->_dist(this->_mt);
 }

@@ -1,0 +1,32 @@
+image: archlinux
+packages:
+  - clang
+sources:
+  - git@git.sr.ht:~jean-max/SpaceTripX
+secrets:
+  - ed142522-17bb-4d9f-ac0e-3be58c6d78ac
+environment:
+  PROJECT: SpaceTripX
+
+tasks:
+  - checkout: |
+      cd $PROJECT
+      LAST_COMMIT_HASH=$(git log --remotes | head -n1 | cut -d' ' -f2)
+      git checkout $LAST_COMMIT_HASH
+
+  - build: |
+      cd $PROJECT
+      make mecry
+      make mrproper
+      CXX=clang++ make mecry
+      make san
+      make dev
+
+  - test: |
+      cd $PROJECT
+      make todo || true
+      make test
+
+  - run: |
+      cd $PROJECT
+      timeout 10 ./$PROJECT.san || test $? = 124

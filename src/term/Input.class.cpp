@@ -29,16 +29,6 @@ Input::Input()
 {
 	DEBUG("Input constructed (default).");
 
-    cbreak();
-	noecho();
-
-    nonl();
-    intrflush(stdscr, false);
-    keypad(stdscr, true);
-
-	curs_set(false);
-    nodelay(stdscr, TRUE);
-    ESCDELAY = 0;
     this->reset_key_map();
 }
 
@@ -55,6 +45,20 @@ Input::~Input(void)
 /*
 ** public
 */
+void            Input::init_curses(void)
+{
+    cbreak();
+	noecho();
+
+    nonl();
+    intrflush(stdscr, false);
+    keypad(stdscr, true);
+
+	curs_set(false);
+    nodelay(stdscr, TRUE);
+    ESCDELAY = 0;
+}
+
 void            Input::read_keys(void)
 {
     while (true) {

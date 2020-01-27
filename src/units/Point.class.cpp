@@ -22,12 +22,9 @@ Point::Point(const int new_x, const int new_y) : x(new_x), y(new_y)
 	DEBUG("Point constructed (default).");
 }
 
-Point::Point(Point const &copy)
+Point::Point(Point const &copy): x(copy.x), y(copy.y)
 {
 	DEBUG("Point constructed (copy).");
-
-    this->x = copy.x;
-    this->y = copy.y;
 }
 
 

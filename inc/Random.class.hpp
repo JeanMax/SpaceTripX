@@ -25,11 +25,13 @@ class Random {
         Random(const int min, const int max);
         ~Random(void);
 
-        int generate(void);
+        std::mt19937 _init_seed(void);
+
+        int          generate(void);
 
     protected:
-        std::mt19937 mt;  //seed
-        std::uniform_int_distribution<int> dist;
+        std::mt19937 _mt;  //seed
+        std::uniform_int_distribution<int> _dist;
 };
 
 

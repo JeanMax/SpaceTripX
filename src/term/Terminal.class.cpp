@@ -23,9 +23,8 @@ Terminal::Terminal()
 
 	setlocale(LC_ALL, "");
     initscr();
-
-    this->in = new Input();
-    this->out = new Output();
+    this->in.init_curses();
+    this->out.init_curses();
 }
 
 
@@ -36,8 +35,12 @@ Terminal::~Terminal(void)
 {
 	DEBUG("Terminal destructed.");
 
-    delete this->in;
-    delete this->out;
-
     endwin();
 }
+
+
+/*
+** getter/setter
+*/
+Input           &Terminal::input()  { return this->in; }
+Output          &Terminal::output() { return this->out; }

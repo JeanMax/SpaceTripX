@@ -36,6 +36,8 @@ class Input
         Input(void);
         ~Input(void);
 
+        void init_curses(void);
+
         void read_keys(void);
         void reset_key_map(void);
         void add_key_event(key_event_handler *handler, int key, void *ptr);

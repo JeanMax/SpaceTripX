@@ -28,14 +28,12 @@ Rectangle::Rectangle(
 	DEBUG("Rectangle constructed (default).");
 }
 
-Rectangle::Rectangle(Rectangle const &copy)
+Rectangle::Rectangle(Rectangle const &copy):
+    Point(copy.x, copy.y),
+    w(copy.w),
+    h(copy.h)
 {
 	DEBUG("Rectangle constructed (copy).");
-
-    this->x = copy.x;
-    this->y = copy.y;
-    this->w = copy.w;
-    this->h = copy.h;
 }
 
 

@@ -36,7 +36,7 @@ Game::Game(const int n_players) : _n_players(n_players)
             GAME_HEIGHT - 3
         );
 
-        this->players[i].sprite[1][1] = '1' + i;
+        this->players[i].sprite[1][1] = static_cast<char>('1' + i);
     }
 
     // init particles positions
